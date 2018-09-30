@@ -1,0 +1,11 @@
+{
+    "rtcprojectApp": {
+        "ProjectStatusEnum" : {
+            "null": "",
+            "SUBMITTED": "SUBMITTED",
+            "PENDING": "PENDING",
+            "COMPLETED": "COMPLETED",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

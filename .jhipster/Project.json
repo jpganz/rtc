@@ -1,0 +1,149 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "club",
+            "otherEntityName": "club",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "project_name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "area_of_interes",
+            "fieldType": "AreaOfInteresEnum",
+            "fieldValues": "FOOD,WATER,HEALTH",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "organizer_committee",
+            "fieldType": "OrganizerCommitteeEnum",
+            "fieldValues": "CLUB_SERVICE,YOUTH,NONE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "coordinator",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "location",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "main_objective",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "target_community",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direct_beneficiaries",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldName": "indirect_beneficiaries",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldName": "short_term_benefits",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mid_term_benefits",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "long_term_benefits",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "member_contributions",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "fundraising",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "donations",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "donations_in_kind",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activity_description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "social_media_reference",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "project_status",
+            "fieldType": "ProjectStatusEnum",
+            "fieldValues": "SUBMITTED,PENDING,COMPLETED,CANCELLED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180930081543",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "project",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,10 @@
+{
+    "rtcprojectApp": {
+        "CountryEnum" : {
+            "null": "",
+            "GUATEMALA": "GUATEMALA",
+            "BELIZE": "BELIZE",
+            "HONDURAS": "HONDURAS"
+        }
+    }
+}

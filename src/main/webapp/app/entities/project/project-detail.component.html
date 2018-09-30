@@ -1,0 +1,109 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="project">
+            <h2><span jhiTranslate="rtcprojectApp.project.detail.title">Project</span> {{project.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rtcprojectApp.project.project_name">Project Name</span></dt>
+                <dd>
+                    <span>{{project.project_name}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.area_of_interes">Area Of Interes</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.AreaOfInteresEnum.' + project.area_of_interes}}">{{project.area_of_interes}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.organizer_committee">Organizer Committee</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.OrganizerCommitteeEnum.' + project.organizer_committee}}">{{project.organizer_committee}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.coordinator">Coordinator</span></dt>
+                <dd>
+                    <span>{{project.coordinator}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.location">Location</span></dt>
+                <dd>
+                    <span>{{project.location}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.date">Date</span></dt>
+                <dd>
+                    <span>{{project.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.main_objective">Main Objective</span></dt>
+                <dd>
+                    <span>{{project.main_objective}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.target_community">Target Community</span></dt>
+                <dd>
+                    <span>{{project.target_community}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.direct_beneficiaries">Direct Beneficiaries</span></dt>
+                <dd>
+                    <span>{{project.direct_beneficiaries}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.indirect_beneficiaries">Indirect Beneficiaries</span></dt>
+                <dd>
+                    <span>{{project.indirect_beneficiaries}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.short_term_benefits">Short Term Benefits</span></dt>
+                <dd>
+                    <span>{{project.short_term_benefits}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.mid_term_benefits">Mid Term Benefits</span></dt>
+                <dd>
+                    <span>{{project.mid_term_benefits}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.long_term_benefits">Long Term Benefits</span></dt>
+                <dd>
+                    <span>{{project.long_term_benefits}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.member_contributions">Member Contributions</span></dt>
+                <dd>
+                    <span>{{project.member_contributions}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.fundraising">Fundraising</span></dt>
+                <dd>
+                    <span>{{project.fundraising}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.donations">Donations</span></dt>
+                <dd>
+                    <span>{{project.donations}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.donations_in_kind">Donations In Kind</span></dt>
+                <dd>
+                    <span>{{project.donations_in_kind}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.activity_description">Activity Description</span></dt>
+                <dd>
+                    <span>{{project.activity_description}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.social_media_reference">Social Media Reference</span></dt>
+                <dd>
+                    <span>{{project.social_media_reference}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.project_status">Project Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.ProjectStatusEnum.' + project.project_status}}">{{project.project_status}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.project.club">Club</span></dt>
+                <dd>
+                    <div *ngIf="project.club">
+                        <a [routerLink]="['/club', project.club?.id, 'view']">{{project.club?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/project', project.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

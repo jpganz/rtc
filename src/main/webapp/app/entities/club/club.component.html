@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="rtcprojectApp.club.home.title">Clubs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-club" [routerLink]="['/club/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="rtcprojectApp.club.home.createLabel">
+            Create new Club
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="clubs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="rtcprojectApp.club.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="rtcprojectApp.club.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cor"><span jhiTranslate="rtcprojectApp.club.cor">Cor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="state"><span jhiTranslate="rtcprojectApp.club.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="rtcprojectApp.club.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address"><span jhiTranslate="rtcprojectApp.club.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rotaract_id"><span jhiTranslate="rtcprojectApp.club.rotaract_id">Rotaract Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="creation_date"><span jhiTranslate="rtcprojectApp.club.creation_date">Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="certification_date"><span jhiTranslate="rtcprojectApp.club.certification_date">Certification Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="meeting_day"><span jhiTranslate="rtcprojectApp.club.meeting_day">Meeting Day</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="meeting_time"><span jhiTranslate="rtcprojectApp.club.meeting_time">Meeting Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="y"><span jhiTranslate="rtcprojectApp.club.y">Y</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="facebook_url"><span jhiTranslate="rtcprojectApp.club.facebook_url">Facebook Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instagram_url"><span jhiTranslate="rtcprojectApp.club.instagram_url">Instagram Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="twitter_url"><span jhiTranslate="rtcprojectApp.club.twitter_url">Twitter Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rotary_club"><span jhiTranslate="rtcprojectApp.club.rotary_club">Rotary Club</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="status"><span jhiTranslate="rtcprojectApp.club.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="comments"><span jhiTranslate="rtcprojectApp.club.comments">Comments</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let club of clubs ;trackBy: trackId">
+                <td><a [routerLink]="['/club', club.id, 'view' ]">{{club.id}}</a></td>
+                <td>{{club.name}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.CountryEnum.' + club.country}}">{{club.country}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.CorEnum.' + club.cor}}">{{club.cor}}</td>
+                <td>{{club.state}}</td>
+                <td>{{club.city}}</td>
+                <td>{{club.address}}</td>
+                <td>{{club.rotaract_id}}</td>
+                <td>{{club.creation_date | date:'mediumDate'}}</td>
+                <td>{{club.certification_date | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.WeekdaysEnum.' + club.meeting_day}}">{{club.meeting_day}}</td>
+                <td>{{club.meeting_time}}</td>
+                <td>{{club.y}}</td>
+                <td>{{club.facebook_url}}</td>
+                <td>{{club.instagram_url}}</td>
+                <td>{{club.twitter_url}}</td>
+                <td>{{club.rotary_club}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.ClubStatusEnum.' + club.status}}">{{club.status}}</td>
+                <td>{{club.comments}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/club', club.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/club', club.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'club/'+ club.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="clubs && clubs.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

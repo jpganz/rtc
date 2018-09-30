@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="club">
+            <h2><span jhiTranslate="rtcprojectApp.club.detail.title">Club</span> {{club.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rtcprojectApp.club.name">Name</span></dt>
+                <dd>
+                    <span>{{club.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.country">Country</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.CountryEnum.' + club.country}}">{{club.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.cor">Cor</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.CorEnum.' + club.cor}}">{{club.cor}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.state">State</span></dt>
+                <dd>
+                    <span>{{club.state}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.city">City</span></dt>
+                <dd>
+                    <span>{{club.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.address">Address</span></dt>
+                <dd>
+                    <span>{{club.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.rotaract_id">Rotaract Id</span></dt>
+                <dd>
+                    <span>{{club.rotaract_id}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.creation_date">Creation Date</span></dt>
+                <dd>
+                    <span>{{club.creation_date}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.certification_date">Certification Date</span></dt>
+                <dd>
+                    <span>{{club.certification_date}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.meeting_day">Meeting Day</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.WeekdaysEnum.' + club.meeting_day}}">{{club.meeting_day}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.meeting_time">Meeting Time</span></dt>
+                <dd>
+                    <span>{{club.meeting_time}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.y">Y</span></dt>
+                <dd>
+                    <span>{{club.y}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.facebook_url">Facebook Url</span></dt>
+                <dd>
+                    <span>{{club.facebook_url}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.instagram_url">Instagram Url</span></dt>
+                <dd>
+                    <span>{{club.instagram_url}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.twitter_url">Twitter Url</span></dt>
+                <dd>
+                    <span>{{club.twitter_url}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.rotary_club">Rotary Club</span></dt>
+                <dd>
+                    <span>{{club.rotary_club}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.ClubStatusEnum.' + club.status}}">{{club.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.club.comments">Comments</span></dt>
+                <dd>
+                    <span>{{club.comments}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/club', club.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

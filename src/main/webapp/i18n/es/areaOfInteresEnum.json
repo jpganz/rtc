@@ -1,0 +1,10 @@
+{
+    "rtcprojectApp": {
+        "AreaOfInteresEnum" : {
+            "null": "",
+            "FOOD": "FOOD",
+            "WATER": "WATER",
+            "HEALTH": "HEALTH"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "rtcprojectApp": {
+        "OrganizerCommitteeEnum" : {
+            "null": "",
+            "CLUB_SERVICE": "CLUB_SERVICE",
+            "YOUTH": "YOUTH",
+            "NONE": "NONE"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "rtcprojectApp": {
+        "ClubStatusEnum" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "INACTIVE": "INACTIVE",
+            "AWAITING_APPROVAL": "AWAITING_APPROVAL"
+        }
+    }
+}

@@ -1,0 +1,42 @@
+
+{
+    "rtcprojectApp": {
+        "project" : {
+            "home": {
+                "title": "Projects",
+                "createLabel": "Crear nuevo Project",
+                "createOrEditLabel": "Crear o editar Project"
+            },
+            "created": "Un nuevo Project ha sido creado con el identificador {{ param }}",
+            "updated": "Un Project ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Project ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Project {{ id }}?"
+            },
+            "detail": {
+                "title": "Project"
+            },
+            "project_name": "Project Name",
+            "area_of_interes": "Area Of Interes",
+            "organizer_committee": "Organizer Committee",
+            "coordinator": "Coordinator",
+            "location": "Location",
+            "date": "Date",
+            "main_objective": "Main Objective",
+            "target_community": "Target Community",
+            "direct_beneficiaries": "Direct Beneficiaries",
+            "indirect_beneficiaries": "Indirect Beneficiaries",
+            "short_term_benefits": "Short Term Benefits",
+            "mid_term_benefits": "Mid Term Benefits",
+            "long_term_benefits": "Long Term Benefits",
+            "member_contributions": "Member Contributions",
+            "fundraising": "Fundraising",
+            "donations": "Donations",
+            "donations_in_kind": "Donations In Kind",
+            "activity_description": "Activity Description",
+            "social_media_reference": "Social Media Reference",
+            "project_status": "Project Status",
+            "club": "Club"
+        }
+    }
+}
