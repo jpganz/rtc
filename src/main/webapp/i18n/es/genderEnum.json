@@ -1,0 +1,9 @@
+{
+    "rtcprojectApp": {
+        "GenderEnum" : {
+            "null": "",
+            "MALE": "MALE",
+            "FEMALE": "FEMALE"
+        }
+    }
+}

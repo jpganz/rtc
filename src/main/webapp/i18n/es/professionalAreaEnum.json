@@ -1,0 +1,11 @@
+{
+    "rtcprojectApp": {
+        "ProfessionalAreaEnum" : {
+            "null": "",
+            "LEGAL": "LEGAL",
+            "FINANCE": "FINANCE",
+            "ENGINEERING": "ENGINEERING",
+            "OTHER": "OTHER"
+        }
+    }
+}

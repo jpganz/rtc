@@ -1,0 +1,34 @@
+
+{
+    "rtcprojectApp": {
+        "member" : {
+            "home": {
+                "title": "Members",
+                "createLabel": "Create a new Member",
+                "createOrEditLabel": "Create or edit a Member"
+            },
+            "created": "A new Member is created with identifier {{ param }}",
+            "updated": "A Member is updated with identifier {{ param }}",
+            "deleted": "A Member is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Member {{ id }}?"
+            },
+            "detail": {
+                "title": "Member"
+            },
+            "name": "Name",
+            "last_name": "Last Name",
+            "status": "Status",
+            "gender": "Gender",
+            "birthdate": "Birthdate",
+            "position": "Position",
+            "committee": "Committee",
+            "professional_area": "Professional Area",
+            "starting_membership": "Starting Membership",
+            "ending_membership": "Ending Membership",
+            "email": "Email",
+            "phone": "Phone",
+            "club": "Club"
+        }
+    }
+}

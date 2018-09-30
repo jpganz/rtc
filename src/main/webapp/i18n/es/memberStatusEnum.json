@@ -1,0 +1,10 @@
+{
+    "rtcprojectApp": {
+        "MemberStatusEnum" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "ABSENT_ON_LEAVE": "ABSENT_ON_LEAVE",
+            "INACTIVE": "INACTIVE"
+        }
+    }
+}

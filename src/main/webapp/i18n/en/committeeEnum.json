@@ -1,0 +1,11 @@
+{
+    "rtcprojectApp": {
+        "CommitteeEnum" : {
+            "null": "",
+            "INTERNATIONAL_SERVICE": "INTERNATIONAL_SERVICE",
+            "FINANCE": "FINANCE",
+            "CLUB_SERVICE": "CLUB_SERVICE",
+            "NONE": "NONE"
+        }
+    }
+}

@@ -9,6 +9,7 @@
                 "main": "Entidades",
                 "club": "Club",
                 "project": "Project",
+                "member": "Member",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

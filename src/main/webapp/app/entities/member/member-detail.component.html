@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="member">
+            <h2><span jhiTranslate="rtcprojectApp.member.detail.title">Member</span> {{member.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rtcprojectApp.member.name">Name</span></dt>
+                <dd>
+                    <span>{{member.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.last_name">Last Name</span></dt>
+                <dd>
+                    <span>{{member.last_name}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.MemberStatusEnum.' + member.status}}">{{member.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.GenderEnum.' + member.gender}}">{{member.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.birthdate">Birthdate</span></dt>
+                <dd>
+                    <span>{{member.birthdate}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.position">Position</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.PositionEnum.' + member.position}}">{{member.position}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.committee">Committee</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.CommitteeEnum.' + member.committee}}">{{member.committee}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.professional_area">Professional Area</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'rtcprojectApp.ProfessionalAreaEnum.' + member.professional_area}}">{{member.professional_area}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.starting_membership">Starting Membership</span></dt>
+                <dd>
+                    <span>{{member.starting_membership}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.ending_membership">Ending Membership</span></dt>
+                <dd>
+                    <span>{{member.ending_membership}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.email">Email</span></dt>
+                <dd>
+                    <span>{{member.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.phone">Phone</span></dt>
+                <dd>
+                    <span>{{member.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="rtcprojectApp.member.club">Club</span></dt>
+                <dd>
+                    <div *ngIf="member.club">
+                        <a [routerLink]="['/club', member.club?.id, 'view']">{{member.club?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/member', member.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

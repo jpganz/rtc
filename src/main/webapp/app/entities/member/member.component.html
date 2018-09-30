@@ -1,0 +1,90 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="rtcprojectApp.member.home.title">Members</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-member" [routerLink]="['/member/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="rtcprojectApp.member.home.createLabel">
+            Create new Member
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="members">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="rtcprojectApp.member.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="last_name"><span jhiTranslate="rtcprojectApp.member.last_name">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="status"><span jhiTranslate="rtcprojectApp.member.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span jhiTranslate="rtcprojectApp.member.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthdate"><span jhiTranslate="rtcprojectApp.member.birthdate">Birthdate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="position"><span jhiTranslate="rtcprojectApp.member.position">Position</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="committee"><span jhiTranslate="rtcprojectApp.member.committee">Committee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="professional_area"><span jhiTranslate="rtcprojectApp.member.professional_area">Professional Area</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="starting_membership"><span jhiTranslate="rtcprojectApp.member.starting_membership">Starting Membership</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ending_membership"><span jhiTranslate="rtcprojectApp.member.ending_membership">Ending Membership</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="rtcprojectApp.member.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="rtcprojectApp.member.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="club.name"><span jhiTranslate="rtcprojectApp.member.club">Club</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let member of members ;trackBy: trackId">
+                <td><a [routerLink]="['/member', member.id, 'view' ]">{{member.id}}</a></td>
+                <td>{{member.name}}</td>
+                <td>{{member.last_name}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.MemberStatusEnum.' + member.status}}">{{member.status}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.GenderEnum.' + member.gender}}">{{member.gender}}</td>
+                <td>{{member.birthdate | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.PositionEnum.' + member.position}}">{{member.position}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.CommitteeEnum.' + member.committee}}">{{member.committee}}</td>
+                <td jhiTranslate="{{'rtcprojectApp.ProfessionalAreaEnum.' + member.professional_area}}">{{member.professional_area}}</td>
+                <td>{{member.starting_membership | date:'mediumDate'}}</td>
+                <td>{{member.ending_membership | date:'mediumDate'}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.phone}}</td>
+                <td>
+                    <div *ngIf="member.club">
+                        <a [routerLink]="['../club', member.club?.id, 'view' ]" >{{member.club?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/member', member.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/member', member.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="members && members.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

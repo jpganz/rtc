@@ -1,0 +1,196 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-member-heading" jhiTranslate="rtcprojectApp.member.home.createOrEditLabel">Create or edit a Member</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!member.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="member.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="member.name" required/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.last_name" for="field_last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="field_last_name"
+                        [(ngModel)]="member.last_name" required/>
+                    <div [hidden]="!(editForm.controls.last_name?.dirty && editForm.controls.last_name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.last_name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="member.status" id="field_status"  required>
+                        <option value="ACTIVE">{{'rtcprojectApp.MemberStatusEnum.ACTIVE' | translate}}</option>
+                        <option value="ABSENT_ON_LEAVE">{{'rtcprojectApp.MemberStatusEnum.ABSENT_ON_LEAVE' | translate}}</option>
+                        <option value="INACTIVE">{{'rtcprojectApp.MemberStatusEnum.INACTIVE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.gender" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" [(ngModel)]="member.gender" id="field_gender"  required>
+                        <option value="MALE">{{'rtcprojectApp.GenderEnum.MALE' | translate}}</option>
+                        <option value="FEMALE">{{'rtcprojectApp.GenderEnum.FEMALE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.gender?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.birthdate" for="field_birthdate">Birthdate</label>
+                    <div class="input-group">
+                        <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="member.birthdate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthdateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.birthdate?.dirty && editForm.controls.birthdate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.birthdate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.position" for="field_position">Position</label>
+                    <select class="form-control" name="position" [(ngModel)]="member.position" id="field_position"  required>
+                        <option value="PRESIDENT">{{'rtcprojectApp.PositionEnum.PRESIDENT' | translate}}</option>
+                        <option value="VICEPRESIDENT">{{'rtcprojectApp.PositionEnum.VICEPRESIDENT' | translate}}</option>
+                        <option value="TREASUR">{{'rtcprojectApp.PositionEnum.TREASUR' | translate}}</option>
+                        <option value="SECRETARY">{{'rtcprojectApp.PositionEnum.SECRETARY' | translate}}</option>
+                        <option value="NONE">{{'rtcprojectApp.PositionEnum.NONE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.position?.dirty && editForm.controls.position?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.position?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.committee" for="field_committee">Committee</label>
+                    <select class="form-control" name="committee" [(ngModel)]="member.committee" id="field_committee"  required>
+                        <option value="INTERNATIONAL_SERVICE">{{'rtcprojectApp.CommitteeEnum.INTERNATIONAL_SERVICE' | translate}}</option>
+                        <option value="FINANCE">{{'rtcprojectApp.CommitteeEnum.FINANCE' | translate}}</option>
+                        <option value="CLUB_SERVICE">{{'rtcprojectApp.CommitteeEnum.CLUB_SERVICE' | translate}}</option>
+                        <option value="NONE">{{'rtcprojectApp.CommitteeEnum.NONE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.committee?.dirty && editForm.controls.committee?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.committee?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.professional_area" for="field_professional_area">Professional Area</label>
+                    <select class="form-control" name="professional_area" [(ngModel)]="member.professional_area" id="field_professional_area"  required>
+                        <option value="LEGAL">{{'rtcprojectApp.ProfessionalAreaEnum.LEGAL' | translate}}</option>
+                        <option value="FINANCE">{{'rtcprojectApp.ProfessionalAreaEnum.FINANCE' | translate}}</option>
+                        <option value="ENGINEERING">{{'rtcprojectApp.ProfessionalAreaEnum.ENGINEERING' | translate}}</option>
+                        <option value="OTHER">{{'rtcprojectApp.ProfessionalAreaEnum.OTHER' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.professional_area?.dirty && editForm.controls.professional_area?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.professional_area?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.starting_membership" for="field_starting_membership">Starting Membership</label>
+                    <div class="input-group">
+                        <input id="field_starting_membership" type="text" class="form-control" name="starting_membership" ngbDatepicker  #starting_membershipDp="ngbDatepicker" [(ngModel)]="member.starting_membership"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="starting_membershipDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.starting_membership?.dirty && editForm.controls.starting_membership?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.starting_membership?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.ending_membership" for="field_ending_membership">Ending Membership</label>
+                    <div class="input-group">
+                        <input id="field_ending_membership" type="text" class="form-control" name="ending_membership" ngbDatepicker  #ending_membershipDp="ngbDatepicker" [(ngModel)]="member.ending_membership"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ending_membershipDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="member.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="member.phone" required/>
+                    <div [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.phone?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.member.club" for="field_club">Club</label>
+                    <select class="form-control" id="field_club" name="club" [(ngModel)]="member.club"  required>
+                        <option *ngIf="!editForm.value.club" [ngValue]="null" selected></option>
+                        <option [ngValue]="clubOption.id === member.club?.id ? member.club : clubOption" *ngFor="let clubOption of clubs; trackBy: trackClubById">{{clubOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.club?.dirty && editForm.controls.club?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.club?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
