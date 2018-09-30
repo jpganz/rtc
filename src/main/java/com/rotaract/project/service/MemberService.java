@@ -1,5 +1,6 @@
 package com.rotaract.project.service;
 
+import com.rotaract.project.domain.Club;
 import com.rotaract.project.domain.Member;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,6 @@ public interface MemberService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    Page<Member> findByClub(Pageable page,String currentUser);
 }

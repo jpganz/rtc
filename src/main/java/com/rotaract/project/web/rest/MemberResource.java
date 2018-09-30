@@ -2,6 +2,7 @@ package com.rotaract.project.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.rotaract.project.domain.Member;
+import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.service.MemberService;
 import com.rotaract.project.web.rest.errors.BadRequestAlertException;
 import com.rotaract.project.web.rest.util.HeaderUtil;
@@ -14,12 +15,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,6 +97,17 @@ public class MemberResource {
     @Timed
     public ResponseEntity<List<Member>> getAllMembers(Pageable pageable) {
         log.debug("REST request to get a page of Members");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        final String name = auth.getName(); // current user
+        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+
+        Page<Member> page;
+        if(isClubAdmin(authorities)){
+            page = memberService.findByClub(pageable,);
+        }else{
+            page = memberService.findAll(pageable);
+        }
         Page<Member> page = memberService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/members");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -123,5 +139,9 @@ public class MemberResource {
         log.debug("REST request to delete Member : {}", id);
         memberService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    private boolean isClubAdmin(Collection<SimpleGrantedAuthority> authorities){
+        return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.CLUB_ADMIN)).findFirst().isPresent();
     }
 }

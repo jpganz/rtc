@@ -1,5 +1,8 @@
 package com.rotaract.project.service.impl;
 
+import com.rotaract.project.domain.Club;
+import com.rotaract.project.domain.User;
+import com.rotaract.project.repository.UserRepository;
 import com.rotaract.project.service.MemberService;
 import com.rotaract.project.domain.Member;
 import com.rotaract.project.repository.MemberRepository;
@@ -23,9 +26,11 @@ public class MemberServiceImpl implements MemberService {
     private final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 
     private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
 
-    public MemberServiceImpl(MemberRepository memberRepository) {
+    public MemberServiceImpl(MemberRepository memberRepository, UserRepository userRepository) {
         this.memberRepository = memberRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -75,5 +80,14 @@ public class MemberServiceImpl implements MemberService {
     public void delete(Long id) {
         log.debug("Request to delete Member : {}", id);
         memberRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Member> findByClub(Pageable page,String currentUser) {
+        Optional<User> user = userRepository.findOneByLogin(currentUser);
+        if(user.isPresent()){
+            return memberRepository.findMemberByClub(page, user.get());
+        }
+        return memberRepository.findMemberByClub(page, 0L);
     }
 }
