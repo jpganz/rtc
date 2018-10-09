@@ -21,21 +21,7 @@
             <th jhiSortBy="coordinator"><span jhiTranslate="rtcprojectApp.project.coordinator">Coordinator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="location"><span jhiTranslate="rtcprojectApp.project.location">Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date"><span jhiTranslate="rtcprojectApp.project.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="main_objective"><span jhiTranslate="rtcprojectApp.project.main_objective">Main Objective</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="target_community"><span jhiTranslate="rtcprojectApp.project.target_community">Target Community</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="direct_beneficiaries"><span jhiTranslate="rtcprojectApp.project.direct_beneficiaries">Direct Beneficiaries</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="indirect_beneficiaries"><span jhiTranslate="rtcprojectApp.project.indirect_beneficiaries">Indirect Beneficiaries</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="short_term_benefits"><span jhiTranslate="rtcprojectApp.project.short_term_benefits">Short Term Benefits</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="mid_term_benefits"><span jhiTranslate="rtcprojectApp.project.mid_term_benefits">Mid Term Benefits</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="long_term_benefits"><span jhiTranslate="rtcprojectApp.project.long_term_benefits">Long Term Benefits</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="member_contributions"><span jhiTranslate="rtcprojectApp.project.member_contributions">Member Contributions</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fundraising"><span jhiTranslate="rtcprojectApp.project.fundraising">Fundraising</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="donations"><span jhiTranslate="rtcprojectApp.project.donations">Donations</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="donations_in_kind"><span jhiTranslate="rtcprojectApp.project.donations_in_kind">Donations In Kind</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="activity_description"><span jhiTranslate="rtcprojectApp.project.activity_description">Activity Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="social_media_reference"><span jhiTranslate="rtcprojectApp.project.social_media_reference">Social Media Reference</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="project_status"><span jhiTranslate="rtcprojectApp.project.project_status">Project Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="club.name"><span jhiTranslate="rtcprojectApp.project.club">Club</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -48,25 +34,7 @@
                 <td>{{project.coordinator}}</td>
                 <td>{{project.location}}</td>
                 <td>{{project.date | date:'mediumDate'}}</td>
-                <td>{{project.main_objective}}</td>
-                <td>{{project.target_community}}</td>
-                <td>{{project.direct_beneficiaries}}</td>
-                <td>{{project.indirect_beneficiaries}}</td>
-                <td>{{project.short_term_benefits}}</td>
-                <td>{{project.mid_term_benefits}}</td>
-                <td>{{project.long_term_benefits}}</td>
-                <td>{{project.member_contributions}}</td>
-                <td>{{project.fundraising}}</td>
-                <td>{{project.donations}}</td>
-                <td>{{project.donations_in_kind}}</td>
-                <td>{{project.activity_description}}</td>
-                <td>{{project.social_media_reference}}</td>
                 <td jhiTranslate="{{'rtcprojectApp.ProjectStatusEnum.' + project.project_status}}">{{project.project_status}}</td>
-                <td>
-                    <div *ngIf="project.club">
-                        <a [routerLink]="['../club', project.club?.id, 'view' ]" >{{project.club?.name}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

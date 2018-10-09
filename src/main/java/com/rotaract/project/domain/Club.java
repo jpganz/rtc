@@ -80,9 +80,6 @@ public class Club implements Serializable {
     @Column(name = "meeting_time", nullable = false)
     private String meeting_time;
 
-    @Column(name = "y")
-    private String y;
-
     @Column(name = "facebook_url")
     private String facebook_url;
 
@@ -256,19 +253,6 @@ public class Club implements Serializable {
         this.meeting_time = meeting_time;
     }
 
-    public String getY() {
-        return y;
-    }
-
-    public Club y(String y) {
-        this.y = y;
-        return this;
-    }
-
-    public void setY(String y) {
-        this.y = y;
-    }
-
     public String getFacebook_url() {
         return facebook_url;
     }
@@ -383,7 +367,6 @@ public class Club implements Serializable {
             ", certification_date='" + getCertification_date() + "'" +
             ", meeting_day='" + getMeeting_day() + "'" +
             ", meeting_time='" + getMeeting_time() + "'" +
-            ", y='" + getY() + "'" +
             ", facebook_url='" + getFacebook_url() + "'" +
             ", instagram_url='" + getInstagram_url() + "'" +
             ", twitter_url='" + getTwitter_url() + "'" +

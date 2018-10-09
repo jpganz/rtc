@@ -38,6 +38,8 @@
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.club.cor" for="field_cor">Cor</label>
                     <select class="form-control" name="cor" [(ngModel)]="club.cor" id="field_cor"  required>
                         <option value="GUATEMALA">{{'rtcprojectApp.CorEnum.GUATEMALA' | translate}}</option>
+                        <option value="GUATEMALA">{{'rtcprojectApp.CorEnum.HONDURAS' | translate}}</option>
+                        <option value="GUATEMALA">{{'rtcprojectApp.CorEnum.BELIZE' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.cor?.dirty && editForm.controls.cor?.invalid)">
                         <small class="form-text text-danger"

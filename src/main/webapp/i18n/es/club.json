@@ -16,24 +16,23 @@
             "detail": {
                 "title": "Club"
             },
-            "name": "Name",
-            "country": "Country",
-            "cor": "Cor",
-            "state": "State",
-            "city": "City",
-            "address": "Address",
-            "rotaract_id": "Rotaract Id",
-            "creation_date": "Creation Date",
-            "certification_date": "Certification Date",
-            "meeting_day": "Meeting Day",
-            "meeting_time": "Meeting Time",
-            "y": "Y",
-            "facebook_url": "Facebook Url",
-            "instagram_url": "Instagram Url",
-            "twitter_url": "Twitter Url",
-            "rotary_club": "Rotary Club",
-            "status": "Status",
-            "comments": "Comments"
+            "name": "Nombre",
+            "country": "Pais",
+            "cor": "Asistente de RDR",
+            "state": "Estado",
+            "city": "Ciudad",
+            "address": "Direccion",
+            "rotaract_id": "ID Rotaract",
+            "creation_date": "Fecha de creacion",
+            "certification_date": "Fecha dde Certificacion",
+            "meeting_day": "Dia de sesion",
+            "meeting_time": "Hora de sesion",
+            "facebook_url": "Direccion Facebook",
+            "instagram_url": "Direccion Instagram",
+            "twitter_url": "Direccion Twitter",
+            "rotary_club": "Club Rotario Patrocinador",
+            "status": "Estatus",
+            "comments": "Comentarios"
         }
     }
 }

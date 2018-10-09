@@ -18,7 +18,7 @@
             },
             "name": "Name",
             "country": "Country",
-            "cor": "Cor",
+            "cor": "RDR Assistant",
             "state": "State",
             "city": "City",
             "address": "Address",
@@ -27,11 +27,10 @@
             "certification_date": "Certification Date",
             "meeting_day": "Meeting Day",
             "meeting_time": "Meeting Time",
-            "y": "Y",
             "facebook_url": "Facebook Url",
             "instagram_url": "Instagram Url",
             "twitter_url": "Twitter Url",
-            "rotary_club": "Rotary Club",
+            "rotary_club": "Sponsor Rotary Club",
             "status": "Status",
             "comments": "Comments"
         }

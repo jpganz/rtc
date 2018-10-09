@@ -43,6 +43,7 @@ public class CacheConfiguration {
             cm.createCache(com.rotaract.project.domain.Club.class.getName(), jcacheConfiguration);
             cm.createCache(com.rotaract.project.domain.Project.class.getName(), jcacheConfiguration);
             cm.createCache(com.rotaract.project.domain.Member.class.getName(), jcacheConfiguration);
+            cm.createCache(com.rotaract.project.domain.Club_admin.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

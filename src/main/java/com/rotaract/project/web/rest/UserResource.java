@@ -149,12 +149,7 @@ public class UserResource {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         final String name = auth.getName();
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
-        Page<UserDTO> page;
-        if(authorities != null && isClubAdmin(authorities)){
-            page = userService.getAllManagedUsers(pageable, name);
-        }else{
-            page = userService.getAllManagedUsers(pageable);
-        }
+        Page<UserDTO> page = userService.getAllManagedUsers(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -197,9 +192,5 @@ public class UserResource {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
-    }
-
-    private boolean isClubAdmin(Collection<SimpleGrantedAuthority> authorities){
-        return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.CLUB_ADMIN)).findFirst().isPresent();
     }
 }

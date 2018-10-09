@@ -104,11 +104,11 @@ public class MemberResource {
 
         Page<Member> page;
         if(isClubAdmin(authorities)){
-            page = memberService.findByClub(pageable,);
+            page = memberService.findAll(pageable);
         }else{
             page = memberService.findAll(pageable);
         }
-        Page<Member> page = memberService.findAll(pageable);
+        page = memberService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/members");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

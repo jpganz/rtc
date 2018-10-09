@@ -2,9 +2,12 @@
     "rtcprojectApp": {
         "AreaOfInteresEnum" : {
             "null": "",
-            "FOOD": "FOOD",
-            "WATER": "WATER",
-            "HEALTH": "HEALTH"
+            "PEACE_CONFLICT_RESOLUTION": "Peace and conflict prevention/resolution.",
+            "DISEASE_PREVENTION": "Disease prevention and treatment",
+            "WATER_SANITATION": "Water and sanitation",
+            "MATERNAL_CHILD_HEALTH": "Maternal and child health",
+            "BASIC_EDUCATION": "Basic education and literacy",
+            "ECONOMIC_COMMUNITY": "Economic and community development"
         }
     }
 }

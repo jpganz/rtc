@@ -2,10 +2,31 @@
     "rtcprojectApp": {
         "ProfessionalAreaEnum" : {
             "null": "",
-            "LEGAL": "LEGAL",
-            "FINANCE": "FINANCE",
-            "ENGINEERING": "ENGINEERING",
-            "OTHER": "OTHER"
+            "LEGAL": "Legal",
+            "FINANCE": "Finanzas",
+            "ENGINEERING": "Ingenieria",
+            "QUALITY_ASSURANCE": "Control de Calidad",
+            "REAL_STATE": "Bienes Raices",
+            "PURCHASING": "Compras",
+            "MEDIA_COMMUNICATIONS": "Comunicacion y Medios",
+            "ACCOUTING": "Contabilidad",
+            "BUSINESS_DEVELOPMENT": "Desarrollo de Negocios",
+            "PRODUCT_MANAGMENT": "Diseño de Producto",
+            "EDUCATION": "Educacion",
+            "ENTREPRENEURSHIP": "Emprendedurismo",
+            "ENVIROMENTAL_SCIENCES": "Ciencias Ambientales",
+            "PROGRAM_PRODUCT_MANAGEMENT": "Gestión de Programas y Productos",
+            "RESEARCH": "Investigacion",
+            "MARKETING": "Mercadeo",
+            "OPERATIONS": "Operaciones",
+            "HUMAN_RESOURCES": "Recursos Humanos",
+            "HEALTHCARE_SERVCES": "Servicios de Salud",
+            "MILITARY_PROTECTIVE_SERVICES": "Servicios Militares y Seguridad",
+            "COMMUNITY_SOCIAL_SERVICES": "Servicios Sociales",
+            "SUPPORT": "Soporte",
+            "INFORMATION_TECHNOLOGY": "Tecnologia de la Informacion",
+            "SALES": "Ventas",
+            "OTHER": "Otros"
         }
     }
 }

@@ -4,7 +4,7 @@
             <fa-icon [icon]="'bars'"></fa-icon>
         </a>
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <span class="logo-img"></span>
+            <span class="logo-img2"></span>
             <span jhiTranslate="global.title" class="navbar-title">Rtcproject</span> <span class="navbar-version">{{version}}</span>
         </a>
     </div>
@@ -24,7 +24,7 @@
                     <span>
                         <fa-icon [icon]="'th-list'"></fa-icon>
                         <span jhiTranslate="global.menu.entities.main">
-                            Entities
+                            Menu
                         </span>
                     </span>
                 </a>
@@ -45,6 +45,12 @@
                         <a class="dropdown-item" routerLink="member" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.member">Member</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="club-admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.clubAdmin">Club Admin</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

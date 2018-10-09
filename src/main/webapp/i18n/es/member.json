@@ -3,31 +3,31 @@
     "rtcprojectApp": {
         "member" : {
             "home": {
-                "title": "Members",
-                "createLabel": "Crear nuevo Member",
-                "createOrEditLabel": "Crear o editar Member"
+                "title": "Socios",
+                "createLabel": "Crear nuevo Socio",
+                "createOrEditLabel": "Crear o editar Socios"
             },
-            "created": "Un nuevo Member ha sido creado con el identificador {{ param }}",
-            "updated": "Un Member ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Member ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo socio ha sido creado con el identificador {{ param }}",
+            "updated": "Un socio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un socio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Member {{ id }}?"
+                "question": "¿Seguro que quiere eliminar al socio {{ name }}?"
             },
             "detail": {
-                "title": "Member"
+                "title": "Socio"
             },
-            "name": "Name",
-            "last_name": "Last Name",
+            "name": "Nombre",
+            "last_name": "Apellido",
             "status": "Status",
-            "gender": "Gender",
-            "birthdate": "Birthdate",
-            "position": "Position",
-            "committee": "Committee",
-            "professional_area": "Professional Area",
-            "starting_membership": "Starting Membership",
-            "ending_membership": "Ending Membership",
-            "email": "Email",
-            "phone": "Phone",
+            "gender": "Genero",
+            "birthdate": "Fecha de Nacimiento",
+            "position": "Posicion",
+            "committee": "Comite",
+            "professional_area": "Area Profesional",
+            "starting_membership": "Inicio Membresia",
+            "ending_membership": "Fin de la membresia",
+            "email": "Correo electronico",
+            "phone": "Telefono",
             "club": "Club"
         }
     }

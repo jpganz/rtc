@@ -1,0 +1,23 @@
+
+{
+    "rtcprojectApp": {
+        "club_admin" : {
+            "home": {
+                "title": "Club Admins",
+                "createLabel": "Create a new Club Admin",
+                "createOrEditLabel": "Create or edit a Club Admin"
+            },
+            "created": "A new Club Admin is created with identifier {{ param }}",
+            "updated": "A Club Admin is updated with identifier {{ param }}",
+            "deleted": "A Club Admin is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Club Admin {{ id }}?"
+            },
+            "detail": {
+                "title": "Club Admin"
+            },
+            "user": "User",
+            "club": "Club"
+        }
+    }
+}

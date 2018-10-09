@@ -7,7 +7,8 @@ export const enum CountryEnum {
 }
 
 export const enum CorEnum {
-    GUATEMALA = 'GUATEMALA'
+    GUATEMALA = 'GUATEMALA',
+    BELIZE = 'BELIZE'
 }
 
 export const enum WeekdaysEnum {

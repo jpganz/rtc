@@ -2,7 +2,9 @@
     "rtcprojectApp": {
         "CorEnum" : {
             "null": "",
-            "GUATEMALA": "GUATEMALA"
+            "GUATEMALA": "GUATEMALA",
+            "HONDURAS": "Honduras",
+            "BELIZE": "Belize"
         }
     }
 }

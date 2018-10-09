@@ -84,10 +84,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Page<Member> findByClub(Pageable page,String currentUser) {
-        Optional<User> user = userRepository.findOneByLogin(currentUser);
-        if(user.isPresent()){
-            return memberRepository.findMemberByClub(page, user.get());
-        }
-        return memberRepository.findMemberByClub(page, 0L);
+        return null;
     }
 }

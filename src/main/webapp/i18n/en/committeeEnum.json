@@ -2,10 +2,13 @@
     "rtcprojectApp": {
         "CommitteeEnum" : {
             "null": "",
-            "INTERNATIONAL_SERVICE": "INTERNATIONAL_SERVICE",
-            "FINANCE": "FINANCE",
-            "CLUB_SERVICE": "CLUB_SERVICE",
-            "NONE": "NONE"
+            "INTERNATIONAL_SERVICE": "International Service",
+            "CLUB_SERVICE": "Club Service",
+            "VOCATIONAL_SERVICE": "Vocational Service",
+            "YOUTH_SERVICE": "Youth Service",
+            "PUBLIC_RELATIONS": "Public relations",
+            "GREEN_ROTARACT": "Green Rotaract",
+            "NONE": "None"
         }
     }
 }

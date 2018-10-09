@@ -1,8 +1,5 @@
 package com.rotaract.project.domain.enumeration;
 
-/**
- * The AreaOfInteresEnum enumeration.
- */
 public enum AreaOfInteresEnum {
-    FOOD, WATER, HEALTH
+    PEACE_CONFLICT_RESOLUTION, DISEASE_PREVENTION, WATER_SANITATION, MATERNAL_CHILD_HEALTH, BASIC_EDUCATION, ECONOMIC_COMMUNITY
 }

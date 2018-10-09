@@ -2,13 +2,13 @@
     "rtcprojectApp": {
         "WeekdaysEnum" : {
             "null": "",
-            "SUNDAY": "SUNDAY",
-            "MONDAY": "MONDAY",
-            "TUESDAY": "TUESDAY",
-            "WEDNESDAY": "WEDNESDAY",
-            "THURSDAY": "THURSDAY",
-            "FRIDAY": "FRIDAY",
-            "SATURDAY": "SATURDAY"
+            "SUNDAY": "Domingo",
+            "MONDAY": "Lunes",
+            "TUESDAY": "Martes",
+            "WEDNESDAY": "Miercoles",
+            "THURSDAY": "Jueves",
+            "FRIDAY": "Viernes",
+            "SATURDAY": "Sabado"
         }
     }
 }

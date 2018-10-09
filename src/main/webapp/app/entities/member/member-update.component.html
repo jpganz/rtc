@@ -81,6 +81,7 @@
                         <option value="VICEPRESIDENT">{{'rtcprojectApp.PositionEnum.VICEPRESIDENT' | translate}}</option>
                         <option value="TREASUR">{{'rtcprojectApp.PositionEnum.TREASUR' | translate}}</option>
                         <option value="SECRETARY">{{'rtcprojectApp.PositionEnum.SECRETARY' | translate}}</option>
+                        <option value="PASTPRESIDENT">{{'rtcprojectApp.PositionEnum.PASTPRESIDENT' | translate}}</option>
                         <option value="NONE">{{'rtcprojectApp.PositionEnum.NONE' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.position?.dirty && editForm.controls.position?.invalid)">
@@ -94,8 +95,11 @@
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.member.committee" for="field_committee">Committee</label>
                     <select class="form-control" name="committee" [(ngModel)]="member.committee" id="field_committee"  required>
                         <option value="INTERNATIONAL_SERVICE">{{'rtcprojectApp.CommitteeEnum.INTERNATIONAL_SERVICE' | translate}}</option>
-                        <option value="FINANCE">{{'rtcprojectApp.CommitteeEnum.FINANCE' | translate}}</option>
                         <option value="CLUB_SERVICE">{{'rtcprojectApp.CommitteeEnum.CLUB_SERVICE' | translate}}</option>
+                        <option value="VOCATIONAL_SERVICE">{{'rtcprojectApp.CommitteeEnum.VOCATIONAL_SERVICE' | translate}}</option>
+                        <option value="YOUTH_SERVICE">{{'rtcprojectApp.CommitteeEnum.YOUTH_SERVICE' | translate}}</option>
+                        <option value="PUBLIC_RELATIONS">{{'rtcprojectApp.CommitteeEnum.PUBLIC_RELATIONS' | translate}}</option>
+                        <option value="GREEN_ROTARACT">{{'rtcprojectApp.CommitteeEnum.GREEN_ROTARACT' | translate}}</option>
                         <option value="NONE">{{'rtcprojectApp.CommitteeEnum.NONE' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.committee?.dirty && editForm.controls.committee?.invalid)">
@@ -111,9 +115,31 @@
                         <option value="LEGAL">{{'rtcprojectApp.ProfessionalAreaEnum.LEGAL' | translate}}</option>
                         <option value="FINANCE">{{'rtcprojectApp.ProfessionalAreaEnum.FINANCE' | translate}}</option>
                         <option value="ENGINEERING">{{'rtcprojectApp.ProfessionalAreaEnum.ENGINEERING' | translate}}</option>
+                        <option value="QUALITY_ASSURANCE">{{'rtcprojectApp.ProfessionalAreaEnum.QUALITY_ASSURANCE' | translate}}</option>
+                        <option value="REAL_STATE">{{'rtcprojectApp.ProfessionalAreaEnum.REAL_STATE' | translate}}</option>
+                        <option value="PURCHASING">{{'rtcprojectApp.ProfessionalAreaEnum.PURCHASING' | translate}}</option>
+                        <option value="MEDIA_COMMUNICATIONS">{{'rtcprojectApp.ProfessionalAreaEnum.MEDIA_COMMUNICATIONS' | translate}}</option>
+                        <option value="ACCOUTING">{{'rtcprojectApp.ProfessionalAreaEnum.ACCOUTING' | translate}}</option>
+                        <option value="BUSINESS_DEVELOPMENT">{{'rtcprojectApp.ProfessionalAreaEnum.BUSINESS_DEVELOPMENT' | translate}}</option>
+                        <option value="PRODUCT_MANAGMENT">{{'rtcprojectApp.ProfessionalAreaEnum.PRODUCT_MANAGMENT' | translate}}</option>
+                        <option value="EDUCATION">{{'rtcprojectApp.ProfessionalAreaEnum.EDUCATION' | translate}}</option>
+                        <option value="ENTREPRENEURSHIP">{{'rtcprojectApp.ProfessionalAreaEnum.ENTREPRENEURSHIP' | translate}}</option>
+                        <option value="ENVIROMENTAL_SCIENCES">{{'rtcprojectApp.ProfessionalAreaEnum.ENVIROMENTAL_SCIENCES' | translate}}</option>
+                        <option value="PROGRAM_PRODUCT_MANAGEMENT">{{'rtcprojectApp.ProfessionalAreaEnum.PROGRAM_PRODUCT_MANAGEMENT' | translate}}</option>
+                        <option value="RESEARCH">{{'rtcprojectApp.ProfessionalAreaEnum.RESEARCH' | translate}}</option>
+                        <option value="MARKETING">{{'rtcprojectApp.ProfessionalAreaEnum.MARKETING' | translate}}</option>
+                        <option value="OPERATIONS">{{'rtcprojectApp.ProfessionalAreaEnum.OPERATIONS' | translate}}</option>
+                        <option value="HUMAN_RESOURCES">{{'rtcprojectApp.ProfessionalAreaEnum.HUMAN_RESOURCES' | translate}}</option>
+                        <option value="HEALTHCARE_SERVCES">{{'rtcprojectApp.ProfessionalAreaEnum.HEALTHCARE_SERVCES' | translate}}</option>
+                        <option value="MILITARY_PROTECTIVE_SERVICES">{{'rtcprojectApp.ProfessionalAreaEnum.MILITARY_PROTECTIVE_SERVICES' | translate}}</option>
+                        <option value="COMMUNITY_SOCIAL_SERVICES">{{'rtcprojectApp.ProfessionalAreaEnum.COMMUNITY_SOCIAL_SERVICES' | translate}}</option>
+                        <option value="SUPPORT">{{'rtcprojectApp.ProfessionalAreaEnum.SUPPORT' | translate}}</option>
+                        <option value="INFORMATION_TECHNOLOGY">{{'rtcprojectApp.ProfessionalAreaEnum.INFORMATION_TECHNOLOGY' | translate}}</option>
+                        <option value="SALES">{{'rtcprojectApp.ProfessionalAreaEnum.SALES' | translate}}</option>
                         <option value="OTHER">{{'rtcprojectApp.ProfessionalAreaEnum.OTHER' | translate}}</option>
                     </select>
-                    <div [hidden]="!(editForm.controls.professional_area?.dirty && editForm.controls.professional_area?.invalid)">
+
+                  <div [hidden]="!(editForm.controls.professional_area?.dirty && editForm.controls.professional_area?.invalid)">
                         <small class="form-text text-danger"
                         [hidden]="!editForm.controls.professional_area?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.

@@ -23,9 +23,12 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.area_of_interes" for="field_area_of_interes">Area Of Interes</label>
                     <select class="form-control" name="area_of_interes" [(ngModel)]="project.area_of_interes" id="field_area_of_interes"  required>
-                        <option value="FOOD">{{'rtcprojectApp.AreaOfInteresEnum.FOOD' | translate}}</option>
-                        <option value="WATER">{{'rtcprojectApp.AreaOfInteresEnum.WATER' | translate}}</option>
-                        <option value="HEALTH">{{'rtcprojectApp.AreaOfInteresEnum.HEALTH' | translate}}</option>
+                        <option value="PEACE_CONFLICT_RESOLUTION">{{'rtcprojectApp.AreaOfInteresEnum.PEACE_CONFLICT_RESOLUTION' | translate}}</option>
+                        <option value="DISEASE_PREVENTION">{{'rtcprojectApp.AreaOfInteresEnum.DISEASE_PREVENTION' | translate}}</option>
+                        <option value="WATER_SANITATION">{{'rtcprojectApp.AreaOfInteresEnum.WATER_SANITATION' | translate}}</option>
+                        <option value="MATERNAL_CHILD_HEALTH">{{'rtcprojectApp.AreaOfInteresEnum.MATERNAL_CHILD_HEALTH' | translate}}</option>
+                        <option value="BASIC_EDUCATION">{{'rtcprojectApp.AreaOfInteresEnum.BASIC_EDUCATION' | translate}}</option>
+                        <option value="ECONOMIC_COMMUNITY">{{'rtcprojectApp.AreaOfInteresEnum.ECONOMIC_COMMUNITY' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.area_of_interes?.dirty && editForm.controls.area_of_interes?.invalid)">
                         <small class="form-text text-danger"
@@ -37,8 +40,12 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.organizer_committee" for="field_organizer_committee">Organizer Committee</label>
                     <select class="form-control" name="organizer_committee" [(ngModel)]="project.organizer_committee" id="field_organizer_committee"  required>
+                        <option value="INTERNATIONAL_SERVICE">{{'rtcprojectApp.OrganizerCommitteeEnum.INTERNATIONAL_SERVICE' | translate}}</option>
                         <option value="CLUB_SERVICE">{{'rtcprojectApp.OrganizerCommitteeEnum.CLUB_SERVICE' | translate}}</option>
-                        <option value="YOUTH">{{'rtcprojectApp.OrganizerCommitteeEnum.YOUTH' | translate}}</option>
+                        <option value="VOCATIONAL_SERVICE">{{'rtcprojectApp.OrganizerCommitteeEnum.VOCATIONAL_SERVICE' | translate}}</option>
+                        <option value="YOUTH_SERVICE">{{'rtcprojectApp.OrganizerCommitteeEnum.YOUTH_SERVICE' | translate}}</option>
+                        <option value="PUBLIC_RELATIONS">{{'rtcprojectApp.OrganizerCommitteeEnum.PUBLIC_RELATIONS' | translate}}</option>
+                        <option value="GREEN_ROTARACT">{{'rtcprojectApp.OrganizerCommitteeEnum.GREEN_ROTARACT' | translate}}</option>
                         <option value="NONE">{{'rtcprojectApp.OrganizerCommitteeEnum.NONE' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.organizer_committee?.dirty && editForm.controls.organizer_committee?.invalid)">

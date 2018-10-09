@@ -2,11 +2,12 @@
     "rtcprojectApp": {
         "PositionEnum" : {
             "null": "",
-            "PRESIDENT": "PRESIDENT",
-            "VICEPRESIDENT": "VICEPRESIDENT",
-            "TREASUR": "TREASUR",
-            "SECRETARY": "SECRETARY",
-            "NONE": "NONE"
+            "PRESIDENT": "Presidente(a)",
+            "VICEPRESIDENT": "Vicepresidente(a)",
+            "TREASUR": "Tesorero(a)",
+            "SECRETARY": "Secretario(a)",
+            "PASTPRESIDENT": "Presidente anterior",
+            "NONE": "Ninguna"
         }
     }
 }
