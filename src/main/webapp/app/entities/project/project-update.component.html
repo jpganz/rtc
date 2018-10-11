@@ -4,22 +4,46 @@
             <h2 id="jhi-project-heading" jhiTranslate="rtcprojectApp.project.home.createOrEditLabel">Create or edit a Project</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!project.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="project.id" readonly />
-                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.project_name" for="field_project_name">Project Name</label>
                     <input type="text" class="form-control" name="project_name" id="field_project_name"
                         [(ngModel)]="project.project_name" required/>
                     <div [hidden]="!(editForm.controls.project_name?.dirty && editForm.controls.project_name?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.project_name?.errors?.required" jhiTranslate="entity.validation.required">
+                        [hidden]="!editForm.controls.project_name?.errors?.required" jhiTranslate="entity.validation.requirhttp://localhost:8090/#/projected">
                         This field is required.
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.activity_description" for="field_activity_description">Activity Description</label>
+                    <input type="text" class="form-control" name="activity_description" id="field_activity_description"
+                           [(ngModel)]="project.activity_description" required/>
+                    <div [hidden]="!(editForm.controls.activity_description?.dirty && editForm.controls.activity_description?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.activity_description?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.indirect_beneficiaries" for="field_indirect_beneficiaries">Hours of volunteer work</label>
+                    <input type="number" class="form-control" name="indirect_beneficiaries" id="field_indirect_beneficiaries"
+                           [(ngModel)]="project.indirect_beneficiaries" min="0" jhiMin="0"/>
+                    <div [hidden]="!(editForm.controls.indirect_beneficiaries?.dirty && editForm.controls.indirect_beneficiaries?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.indirect_beneficiaries?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.indirect_beneficiaries?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.area_of_interes" for="field_area_of_interes">Area Of Interes</label>
                     <select class="form-control" name="area_of_interes" [(ngModel)]="project.area_of_interes" id="field_area_of_interes"  required>
@@ -93,17 +117,9 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.main_objective" for="field_main_objective">Main Objective</label>
-                    <input type="text" class="form-control" name="main_objective" id="field_main_objective"
-                        [(ngModel)]="project.main_objective" required/>
-                    <div [hidden]="!(editForm.controls.main_objective?.dirty && editForm.controls.main_objective?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.main_objective?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
+
+
+                <!-- cosos en especie -->
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.target_community" for="field_target_community">Target Community</label>
                     <input type="text" class="form-control" name="target_community" id="field_target_community"
@@ -115,6 +131,21 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.main_objective" for="field_main_objective">Main Objective</label>
+                    <input type="text" class="form-control" name="main_objective" id="field_main_objective"
+                           [(ngModel)]="project.main_objective" required/>
+                    <div [hidden]="!(editForm.controls.main_objective?.dirty && editForm.controls.main_objective?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.main_objective?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- fin cosos en especie -->
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.direct_beneficiaries" for="field_direct_beneficiaries">Direct Beneficiaries</label>
                     <input type="number" class="form-control" name="direct_beneficiaries" id="field_direct_beneficiaries"
@@ -134,21 +165,7 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.indirect_beneficiaries" for="field_indirect_beneficiaries">Indirect Beneficiaries</label>
-                    <input type="number" class="form-control" name="indirect_beneficiaries" id="field_indirect_beneficiaries"
-                        [(ngModel)]="project.indirect_beneficiaries" min="0" jhiMin="0"/>
-                    <div [hidden]="!(editForm.controls.indirect_beneficiaries?.dirty && editForm.controls.indirect_beneficiaries?.invalid)">
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.indirect_beneficiaries?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
-                            This field should be at least 0.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.indirect_beneficiaries?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.short_term_benefits" for="field_short_term_benefits">Short Term Benefits</label>
                     <input type="text" class="form-control" name="short_term_benefits" id="field_short_term_benefits"
@@ -190,17 +207,7 @@
                     <input type="text" class="form-control" name="donations_in_kind" id="field_donations_in_kind"
                         [(ngModel)]="project.donations_in_kind" />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rtcprojectApp.project.activity_description" for="field_activity_description">Activity Description</label>
-                    <input type="text" class="form-control" name="activity_description" id="field_activity_description"
-                        [(ngModel)]="project.activity_description" required/>
-                    <div [hidden]="!(editForm.controls.activity_description?.dirty && editForm.controls.activity_description?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.activity_description?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.social_media_reference" for="field_social_media_reference">Social Media Reference</label>
                     <input type="text" class="form-control" name="social_media_reference" id="field_social_media_reference"

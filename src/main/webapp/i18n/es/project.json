@@ -1,4 +1,3 @@
-
 {
     "rtcprojectApp": {
         "project" : {
@@ -7,35 +6,35 @@
                 "createLabel": "Crear nuevo Project",
                 "createOrEditLabel": "Crear o editar Project"
             },
-            "created": "Un nuevo Project ha sido creado con el identificador {{ param }}",
-            "updated": "Un Project ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Project ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Proyecto ha sido creado con el identificador",
+            "updated": "Un Project ha sido actualizado con el identificador ",
+            "deleted": "Un Project ha sido eliminado con el identificador ",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Project {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Project {{ name }}?"
             },
             "detail": {
-                "title": "Project"
+                "title": "Proyecto"
             },
-            "project_name": "Project Name",
-            "area_of_interes": "Area Of Interes",
-            "organizer_committee": "Organizer Committee",
-            "coordinator": "Coordinator",
-            "location": "Location",
-            "date": "Date",
-            "main_objective": "Main Objective",
-            "target_community": "Target Community",
-            "direct_beneficiaries": "Direct Beneficiaries",
-            "indirect_beneficiaries": "Indirect Beneficiaries",
-            "short_term_benefits": "Short Term Benefits",
-            "mid_term_benefits": "Mid Term Benefits",
-            "long_term_benefits": "Long Term Benefits",
-            "member_contributions": "Member Contributions",
+            "project_name": "Nombre del proyecto",
+            "area_of_interes": "Area de interes",
+            "organizer_committee": "Comite organizador",
+            "coordinator": "Coordinador",
+            "location": "Lugar",
+            "date": "Fecha",
+            "main_objective": "Objetivo Principal",
+            "target_community": "Comunidad Objetivo",
+            "direct_beneficiaries": "Beneficiarios Directos",
+            "indirect_beneficiaries": "Horas de trabajo voluntario",
+            "short_term_benefits": "Beneficios a corto plazo",
+            "mid_term_benefits": "Beneficios a mediano plazo",
+            "long_term_benefits": "Beneficios a largo plazo",
+            "member_contributions": "Contribucion de socios",
             "fundraising": "Fundraising",
-            "donations": "Donations",
-            "donations_in_kind": "Donations In Kind",
-            "activity_description": "Activity Description",
-            "social_media_reference": "Social Media Reference",
-            "project_status": "Project Status",
+            "donations": "Donaciones",
+            "donations_in_kind": "Donacion en especie",
+            "activity_description": "Descripcion de la actividad",
+            "social_media_reference": "Referencia a redes sociales",
+            "project_status": "Estado del proyecto",
             "club": "Club"
         }
     }
