@@ -8,6 +8,7 @@ import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.service.ClubService;
 import com.rotaract.project.service.Club_adminService;
 import com.rotaract.project.service.UserService;
+import com.rotaract.project.service.UsersPermissions;
 import com.rotaract.project.web.rest.errors.BadRequestAlertException;
 import com.rotaract.project.web.rest.util.HeaderUtil;
 import com.rotaract.project.web.rest.util.PaginationUtil;
@@ -49,11 +50,13 @@ public class ClubResource {
     private final ClubService clubService;
     private final Club_adminService clubAdminService;
     private final UserService userService;
+    private final UsersPermissions usersPermissions;
 
-    public ClubResource(ClubService clubService, Club_adminService clubAdminService, UserService userService) {
+    public ClubResource(ClubService clubService, Club_adminService clubAdminService, UserService userService, UsersPermissions usersPermissions) {
         this.clubService = clubService;
         this.clubAdminService = clubAdminService;
         this.userService = userService;
+        this.usersPermissions = usersPermissions;
     }
 
     /**
@@ -111,6 +114,12 @@ public class ClubResource {
     public ResponseEntity<List<Club>> getAllClubs(Pageable pageable) {
         log.debug("REST request to get a page of Clubs");
         // get only related clubs
+        if (usersPermissions.isSuperAdmin()){
+            Page<Club> page = clubService.findAll(pageable);
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/club-admins");
+            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        }
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         final String name = auth.getName();
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();

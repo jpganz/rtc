@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface UsersPermissions {
 
     Optional<Club_admin> getUserClubAdminCredentials();
+
+    boolean isSuperAdmin();
 }

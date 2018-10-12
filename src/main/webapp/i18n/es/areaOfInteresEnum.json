@@ -7,7 +7,18 @@
             "WATER_SANITATION": "Suministro de agua potable",
             "MATERNAL_CHILD_HEALTH": "Salud materno-infantil",
             "BASIC_EDUCATION": "Promoción de la educación",
-            "ECONOMIC_COMMUNITY": "Desarrollo de las economías locales"
+            "ECONOMIC_COMMUNITY": "Desarrollo de las economías locales",
+
+            "ROTARY_AREAS": "Areas de Rotary",
+            "GENERAL_AREAS": "Areas Generales",
+            "COMMUNITY": "Comunidad",
+            "INTERNATIONAL": "Internacional",
+            "PROFESSIONAL": "Profesional",
+            "NEW_GENERATIONS": "Nuevas Generaciones",
+            "FUNDING_EVENT": "Recaudacion",
+            "POLIO": "Polio",
+            "ENVIRONMENT": "Medio Ambiente",
+            "CATASTROPHIES_RESPONSE": "Catastrofes"
         }
     }
 }

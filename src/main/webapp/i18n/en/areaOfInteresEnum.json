@@ -7,7 +7,18 @@
             "WATER_SANITATION": "Water and sanitation",
             "MATERNAL_CHILD_HEALTH": "Maternal and child health",
             "BASIC_EDUCATION": "Basic education and literacy",
-            "ECONOMIC_COMMUNITY": "Economic and community development"
+            "ECONOMIC_COMMUNITY": "Economic and community development",
+
+            "ROTARY_AREAS": "Areas de Rotary",
+            "GENERAL_AREAS": "Areas Generales",
+            "COMMUNITY": "Comunidad",
+            "INTERNATIONAL": "Internacional",
+            "PROFESSIONAL": "Profesional",
+            "NEW_GENERATIONS": "Nuevas Generaciones",
+            "FUNDING_EVENT": "Recaudacion",
+            "POLIO": "Polio",
+            "ENVIRONMENT": "Medio Ambiente",
+            "CATASTROPHIES_RESPONSE": "Catastrofes"
         }
     }
 }
