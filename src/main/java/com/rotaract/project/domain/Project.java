@@ -10,7 +10,9 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.rotaract.project.domain.enumeration.AreaOfInteresEnum;
 
@@ -36,10 +38,17 @@ public class Project implements Serializable {
     @Column(name = "project_name", nullable = false)
     private String project_name;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "area_of_interes", nullable = false)
-    private AreaOfInteresEnum area_of_interes;
+
+    //@Transient
+    @ElementCollection
+    @Column(name = "area_of_interes", nullable = true)
+    private List<AreaOfInteresEnum> area_of_interes;
+
+    //@NotNull
+    //@Enumerated(EnumType.STRING)
+    //@Column(name = "area_of_interes", nullable = false)
+    @Transient
+    private String area_of_interes_string;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -58,11 +67,11 @@ public class Project implements Serializable {
     @Column(name = "jhi_date", nullable = false)
     private LocalDate date;
 
-    @NotNull
+    //@NotNull
     @Column(name = "main_objective", nullable = false)
     private String main_objective;
 
-    @NotNull
+    //@NotNull
     @Column(name = "target_community", nullable = false)
     private String target_community;
 
@@ -75,7 +84,7 @@ public class Project implements Serializable {
     @Column(name = "indirect_beneficiaries")
     private Long indirect_beneficiaries;
 
-    @NotNull
+    //@NotNull
     @Column(name = "short_term_benefits", nullable = false)
     private String short_term_benefits;
 
@@ -136,18 +145,32 @@ public class Project implements Serializable {
         this.project_name = project_name;
     }
 
-    public AreaOfInteresEnum getArea_of_interes() {
+    // transient
+    public List<AreaOfInteresEnum> getArea_of_interes() {
         return area_of_interes;
     }
 
-    public Project area_of_interes(AreaOfInteresEnum area_of_interes) {
+    public void setArea_of_interes(List<AreaOfInteresEnum> area_of_interes) {
         this.area_of_interes = area_of_interes;
+    }
+
+    // fin transient
+
+    public Project area_of_interes(String area_of_interes) {
+        this.area_of_interes_string = area_of_interes;
         return this;
     }
 
-    public void setArea_of_interes(AreaOfInteresEnum area_of_interes) {
-        this.area_of_interes = area_of_interes;
+    public String getArea_of_interes_string() {
+        return area_of_interes_string;
     }
+
+    public void setArea_of_interes_string(String area_of_interes_string) {
+        this.area_of_interes_string = area_of_interes_string;
+    }
+
+
+
 
     public OrganizerCommitteeEnum getOrganizer_committee() {
         return organizer_committee;

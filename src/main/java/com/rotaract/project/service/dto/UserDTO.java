@@ -4,12 +4,15 @@ import com.rotaract.project.config.Constants;
 
 import com.rotaract.project.domain.Authority;
 import com.rotaract.project.domain.User;
+import com.rotaract.project.domain.enumeration.PositionEnum;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,6 +55,18 @@ public class UserDTO {
     private Instant lastModifiedDate;
 
     private Set<String> authorities;
+
+    private long clubId;
+
+    private String gender;
+
+    private LocalDate birthday;
+
+    private LocalDate membershipStart;
+
+    private PositionEnum position;
+
+    private String phone;
 
     public UserDTO() {
         // Empty constructor needed for Jackson.
@@ -177,6 +192,54 @@ public class UserDTO {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public LocalDate getMembershipStart() {
+        return membershipStart;
+    }
+
+    public void setMembershipStart(LocalDate membershipStart) {
+        this.membershipStart = membershipStart;
+    }
+
+    public PositionEnum getPosition() {
+        return position;
+    }
+
+    public void setPosition(PositionEnum position) {
+        this.position = position;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public long getClubId() {
+        return clubId;
+    }
+
+    public void setClubId(long clubId) {
+        this.clubId = clubId;
     }
 
     @Override

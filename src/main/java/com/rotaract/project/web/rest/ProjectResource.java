@@ -1,8 +1,13 @@
 package com.rotaract.project.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.rotaract.project.domain.Club;
 import com.rotaract.project.domain.Project;
+import com.rotaract.project.domain.User;
+import com.rotaract.project.domain.UserGrantedRole;
 import com.rotaract.project.service.ProjectService;
+import com.rotaract.project.service.UserService;
+import com.rotaract.project.service.UsersPermissions;
 import com.rotaract.project.web.rest.errors.BadRequestAlertException;
 import com.rotaract.project.web.rest.util.HeaderUtil;
 import com.rotaract.project.web.rest.util.PaginationUtil;
@@ -10,6 +15,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +26,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +43,13 @@ public class ProjectResource {
 
     private final ProjectService projectService;
 
-    public ProjectResource(ProjectService projectService) {
+    private final UserService userService;
+    private final UsersPermissions usersPermissions;
+
+    public ProjectResource(ProjectService projectService, UserService userService, UsersPermissions usersPermissions) {
         this.projectService = projectService;
+        this.userService = userService;
+        this.usersPermissions = usersPermissions;
     }
 
     /**
@@ -54,6 +66,7 @@ public class ProjectResource {
         if (project.getId() != null) {
             throw new BadRequestAlertException("A new project cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        project.setArea_of_interes(project.getArea_of_interes());
         Project result = projectService.save(project);
         return ResponseEntity.created(new URI("/api/projects/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -92,7 +105,25 @@ public class ProjectResource {
     @Timed
     public ResponseEntity<List<Project>> getAllProjects(Pageable pageable) {
         log.debug("REST request to get a page of Projects");
-        Page<Project> page = projectService.findAll(pageable);
+
+        UserGrantedRole userGrantedRole = usersPermissions.getUserRoles();
+
+
+        Page<Project> page = new PageImpl<Project>(new ArrayList<>());
+
+        if(userGrantedRole.isAdmin()){
+            page = projectService.findAll(pageable);
+        }else if(userGrantedRole.isClubAdmin() || userGrantedRole.isUser()){
+            Optional<User> user = userService.getUserWithAuthoritiesByLogin(userGrantedRole.getUserName());
+            List<Project> projects = new ArrayList<>();
+            if(user.isPresent() && user.get().getClub() != null){
+                page = projectService.findByClub(pageable, user.get().getClub());
+            }
+
+        }else {
+            //page = clubService.findAll(pageable);
+        }
+        //Page<Project> page = projectService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

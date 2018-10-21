@@ -1,5 +1,7 @@
 package com.rotaract.project.service;
 
+import com.rotaract.project.domain.Club;
+import com.rotaract.project.domain.Member;
 import com.rotaract.project.domain.Project;
 
 import org.springframework.data.domain.Page;
@@ -37,6 +39,7 @@ public interface ProjectService {
      */
     Optional<Project> findOne(Long id);
 
+    Page<Project> findByClub(Pageable page, Club club);
     /**
      * Delete the "id" project.
      *

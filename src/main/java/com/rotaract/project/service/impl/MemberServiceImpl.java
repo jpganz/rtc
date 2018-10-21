@@ -83,7 +83,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Page<Member> findByClub(Pageable page,String currentUser) {
-        return null;
+    public Page<Member> findByClub(Pageable page, Club club) {
+        return memberRepository.findMemberByClub(page, club);
     }
 }

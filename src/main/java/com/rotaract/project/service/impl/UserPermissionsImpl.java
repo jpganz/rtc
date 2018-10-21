@@ -1,6 +1,7 @@
 package com.rotaract.project.service.impl;
 
 import com.rotaract.project.domain.Club_admin;
+import com.rotaract.project.domain.UserGrantedRole;
 import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.service.UsersPermissions;
 import org.springframework.security.core.Authentication;
@@ -42,11 +43,61 @@ public class UserPermissionsImpl implements UsersPermissions {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             final String name = auth.getName(); // current user
             Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
-            return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.ADMIN)).findFirst().isPresent();
+            //return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.ADMIN)).findFirst().isPresent();
+            for(SimpleGrantedAuthority authority:authorities){
+                if(authority.getAuthority().equals("ADMIN")){
+                    return true;
+                }
+            }
         }catch(Exception e){
             return false;
         }
+        return false;
     }
+
+    @Override
+    public boolean isClubAdmin(){
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            final String name = auth.getName(); // current user
+            Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+            //return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.CLUB_ADMIN)).findFirst().isPresent();
+            for(SimpleGrantedAuthority authority:authorities){
+                if(authority.getAuthority().equals("CLUB_ADMIN")){
+                    return true;
+                }
+            }
+        }catch(Exception e){
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public UserGrantedRole getUserRoles(){
+        final UserGrantedRole grantedRole = new UserGrantedRole();
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            final String name = auth.getName(); // current user
+            grantedRole.setUserName(name);
+            Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+            //return authorities.stream().filter(o -> o.getAuthority().equals(AuthoritiesConstants.CLUB_ADMIN)).findFirst().isPresent();
+            for(SimpleGrantedAuthority authority:authorities){
+                if(authority.getAuthority().equals("CLUB_ADMIN")){
+                    grantedRole.setClubAdmin(true);
+                }else if(authority.getAuthority().equals("ROLE_ADMIN")){
+                    grantedRole.setAdmin(true);
+                }else if(authority.getAuthority().equals("ROLE_USER")){
+                    grantedRole.setUser(true);
+                }
+            }
+            return grantedRole;
+        }catch(Exception e){
+
+        }
+        return null;
+    }
+
     /*
     *jhiHasAnyAuthority="'ROLE_ADMIN'"
      */

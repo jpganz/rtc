@@ -31,25 +31,21 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rtcprojectApp.project.area_of_interes" for="field_area_of_interes">Area Of Interes</label>
-                    <select class="form-control" name="area_of_interes" [(ngModel)]="project.area_of_interes" id="field_area_of_interes"  required>
-
-                        <option value="GENERAL_AREAS" disabled="disabled"><span style="font-weight: bold;">{{'rtcprojectApp.AreaOfInteresEnum.GENERAL_AREAS' | translate}} </span></option>
-                        <option value="COMMUNITY">-  {{'rtcprojectApp.AreaOfInteresEnum.COMMUNITY' | translate}}</option>
-                        <option value="INTERNATIONAL">-  {{'rtcprojectApp.AreaOfInteresEnum.INTERNATIONAL' | translate}}</option>
-                        <option value="PROFESSIONAL">-  {{'rtcprojectApp.AreaOfInteresEnum.PROFESSIONAL' | translate}}</option>
-                        <option value="NEW_GENERATIONS">-  {{'rtcprojectApp.AreaOfInteresEnum.NEW_GENERATIONS' | translate}}</option>
-                        <option value="FUNDING_EVENT">-  {{'rtcprojectApp.AreaOfInteresEnum.FUNDING_EVENT' | translate}}</option>
-                        <option value="POLIO">-  {{'rtcprojectApp.AreaOfInteresEnum.POLIO' | translate}}</option>
-                        <option value="ENVIRONMENT">-  {{'rtcprojectApp.AreaOfInteresEnum.ENVIRONMENT' | translate}}</option>
-                        <option value="CATASTROPHIES_RESPONSE">-  {{'rtcprojectApp.AreaOfInteresEnum.CATASTROPHIES_RESPONSE' | translate}}</option>
-
-                        <option value="ROTARY_AREAS" disabled="disabled"> <span style="font-weight: bold;"> {{'rtcprojectApp.AreaOfInteresEnum.ROTARY_AREAS' | translate}} </span></option>
-                        <option value="PEACE_CONFLICT_RESOLUTION">-  {{'rtcprojectApp.AreaOfInteresEnum.PEACE_CONFLICT_RESOLUTION' | translate}}</option>
-                        <option value="DISEASE_PREVENTION">-  {{'rtcprojectApp.AreaOfInteresEnum.DISEASE_PREVENTION' | translate}}</option>
-                        <option value="WATER_SANITATION">-  {{'rtcprojectApp.AreaOfInteresEnum.WATER_SANITATION' | translate}}</option>
-                        <option value="MATERNAL_CHILD_HEALTH">-  {{'rtcprojectApp.AreaOfInteresEnum.MATERNAL_CHILD_HEALTH' | translate}}</option>
-                        <option value="BASIC_EDUCATION">-  {{'rtcprojectApp.AreaOfInteresEnum.BASIC_EDUCATION' | translate}}</option>
-                        <option value="ECONOMIC_COMMUNITY">-  {{'rtcprojectApp.AreaOfInteresEnum.ECONOMIC_COMMUNITY' | translate}}</option>
+                    <select multiple="multiple" class="form-control" name="area_of_interes" [(ngModel)]="project.area_of_interes" id="field_area_of_interes"  required>
+                        <option value="COMMUNITY">{{'rtcprojectApp.AreaOfInteresEnum.COMMUNITY' | translate}}</option>
+                        <option value="INTERNATIONAL">{{'rtcprojectApp.AreaOfInteresEnum.INTERNATIONAL' | translate}}</option>
+                        <option value="PROFESSIONAL">{{'rtcprojectApp.AreaOfInteresEnum.PROFESSIONAL' | translate}}</option>
+                        <option value="NEW_GENERATIONS">{{'rtcprojectApp.AreaOfInteresEnum.NEW_GENERATIONS' | translate}}</option>
+                        <option value="FUNDING_EVENT">{{'rtcprojectApp.AreaOfInteresEnum.FUNDING_EVENT' | translate}}</option>
+                        <option value="POLIO">{{'rtcprojectApp.AreaOfInteresEnum.POLIO' | translate}}</option>
+                        <option value="ENVIRONMENT">{{'rtcprojectApp.AreaOfInteresEnum.ENVIRONMENT' | translate}}</option>
+                        <option value="CATASTROPHIES_RESPONSE">{{'rtcprojectApp.AreaOfInteresEnum.CATASTROPHIES_RESPONSE' | translate}}</option>
+                        <option value="PEACE_CONFLICT_RESOLUTION">{{'rtcprojectApp.AreaOfInteresEnum.PEACE_CONFLICT_RESOLUTION' | translate}}</option>
+                        <option value="DISEASE_PREVENTION">{{'rtcprojectApp.AreaOfInteresEnum.DISEASE_PREVENTION' | translate}}</option>
+                        <option value="WATER_SANITATION">{{'rtcprojectApp.AreaOfInteresEnum.WATER_SANITATION' | translate}}</option>
+                        <option value="MATERNAL_CHILD_HEALTH">{{'rtcprojectApp.AreaOfInteresEnum.MATERNAL_CHILD_HEALTH' | translate}}</option>
+                        <option value="BASIC_EDUCATION">{{'rtcprojectApp.AreaOfInteresEnum.BASIC_EDUCATION' | translate}}</option>
+                        <option value="ECONOMIC_COMMUNITY">{{'rtcprojectApp.AreaOfInteresEnum.ECONOMIC_COMMUNITY' | translate}}</option>
                     </select>
                     <div [hidden]="!(editForm.controls.area_of_interes?.dirty && editForm.controls.area_of_interes?.invalid)">
                         <small class="form-text text-danger"

@@ -19,7 +19,6 @@
             <th jhiSortBy="cor"><span jhiTranslate="rtcprojectApp.club.cor">Cor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="city"><span jhiTranslate="rtcprojectApp.club.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="address"><span jhiTranslate="rtcprojectApp.club.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="creation_date"><span jhiTranslate="rtcprojectApp.club.creation_date">Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="certification_date"><span jhiTranslate="rtcprojectApp.club.certification_date">Certification Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="meeting_day"><span jhiTranslate="rtcprojectApp.club.meeting_day">Meeting Day</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="meeting_time"><span jhiTranslate="rtcprojectApp.club.meeting_time">Meeting Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -35,7 +34,6 @@
                 <td jhiTranslate="{{'rtcprojectApp.CorEnum.' + club.cor}}">{{club.cor}}</td>
                 <td>{{club.city}}</td>
                 <td>{{club.address}}</td>
-                <td>{{club.creation_date | date:'mediumDate'}}</td>
                 <td>{{club.certification_date | date:'mediumDate'}}</td>
                 <td jhiTranslate="{{'rtcprojectApp.WeekdaysEnum.' + club.meeting_day}}">{{club.meeting_day}}</td>
                 <td>{{club.meeting_time}}</td>
@@ -55,7 +53,7 @@
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'club/'+ club.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

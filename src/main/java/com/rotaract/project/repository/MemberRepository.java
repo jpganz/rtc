@@ -14,5 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Page<Member> findMemberByClubId(Pageable page, Long clubId);
+    Page<Member> findMemberByClub(Pageable page, Club club);
+
 }

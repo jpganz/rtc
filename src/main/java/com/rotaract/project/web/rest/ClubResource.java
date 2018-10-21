@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.rotaract.project.domain.Club;
 import com.rotaract.project.domain.Club_admin;
 import com.rotaract.project.domain.User;
+import com.rotaract.project.domain.UserGrantedRole;
 import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.service.ClubService;
 import com.rotaract.project.service.Club_adminService;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -114,32 +116,30 @@ public class ClubResource {
     public ResponseEntity<List<Club>> getAllClubs(Pageable pageable) {
         log.debug("REST request to get a page of Clubs");
         // get only related clubs
+
+        Pageable pageAllClubs = PageRequest.of(0,100);
         if (usersPermissions.isSuperAdmin()){
             Page<Club> page = clubService.findAll(pageable);
             HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/club-admins");
             return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         }
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        final String name = auth.getName();
-        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
+        UserGrantedRole userGrantedRole = usersPermissions.getUserRoles();
+
         Page<Club> page = new PageImpl<Club>(new ArrayList<>());
-        if(isClubAdmin(authorities)){
-            //call club admin by user
-            Optional<User> user = userService.getUserWithAuthoritiesByLogin(name);
-
-
-            Optional<Club_admin> clubAdmin = clubAdminService.findByUserId(user.get().getId());
-            //get club id
+        if(userGrantedRole.isAdmin()){
+            page = clubService.findAll(pageAllClubs);
+        }else if(userGrantedRole.isClubAdmin() || userGrantedRole.isUser()){
+            Optional<User> user = userService.getUserWithAuthoritiesByLogin(userGrantedRole.getUserName());
             List<Club> clubs = new ArrayList<>();
-            if(clubAdmin.isPresent()){
-                clubs.add(clubService.findOne(clubAdmin.get().getClub().getId()).get());
+            if(user.isPresent() && user.get().getClub() != null){
+                clubs.add(clubService.findOne(user.get().getClub().getId()).get());
             }
             page = new PageImpl<>(clubs);
-        }else{
+        }else {
             //page = clubService.findAll(pageable);
         }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/clubs");
+        final HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/clubs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -170,16 +170,4 @@ public class ClubResource {
         clubService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    private boolean isClubAdmin(Collection<SimpleGrantedAuthority> authorities){
-        for(SimpleGrantedAuthority authority:authorities){
-            System.out.println(authority.getAuthority());
-            if("CLUB_ADMIN".equals(authority.getAuthority())){
-                return true;
-            }
-        }
-        return false;
-        //return authorities.stream().filter(o -> o.getAuthority().equals("ROLE_CLUB_ADMIN")).findFirst().isPresent();
-    }
-
 }

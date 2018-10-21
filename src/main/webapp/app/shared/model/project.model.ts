@@ -42,7 +42,7 @@ export const enum ProjectStatusEnum {
 export interface IProject {
     id?: number;
     project_name?: string;
-    area_of_interes?: AreaOfInteresEnum;
+    area_of_interes?: string;
     organizer_committee?: OrganizerCommitteeEnum;
     coordinator?: string;
     location?: string;
@@ -68,7 +68,7 @@ export class Project implements IProject {
     constructor(
         public id?: number,
         public project_name?: string,
-        public area_of_interes?: AreaOfInteresEnum,
+        public area_of_interes?: string,
         public organizer_committee?: OrganizerCommitteeEnum,
         public coordinator?: string,
         public location?: string,

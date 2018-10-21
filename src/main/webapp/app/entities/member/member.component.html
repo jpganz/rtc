@@ -23,8 +23,6 @@
             <th jhiSortBy="position"><span jhiTranslate="rtcprojectApp.member.position">Position</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="committee"><span jhiTranslate="rtcprojectApp.member.committee">Committee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="professional_area"><span jhiTranslate="rtcprojectApp.member.professional_area">Professional Area</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="starting_membership"><span jhiTranslate="rtcprojectApp.member.starting_membership">Starting Membership</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="ending_membership"><span jhiTranslate="rtcprojectApp.member.ending_membership">Ending Membership</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="email"><span jhiTranslate="rtcprojectApp.member.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phone"><span jhiTranslate="rtcprojectApp.member.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="club.name"><span jhiTranslate="rtcprojectApp.member.club">Club</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -42,8 +40,6 @@
                 <td jhiTranslate="{{'rtcprojectApp.PositionEnum.' + member.position}}">{{member.position}}</td>
                 <td jhiTranslate="{{'rtcprojectApp.CommitteeEnum.' + member.committee}}">{{member.committee}}</td>
                 <td jhiTranslate="{{'rtcprojectApp.ProfessionalAreaEnum.' + member.professional_area}}">{{member.professional_area}}</td>
-                <td>{{member.starting_membership | date:'mediumDate'}}</td>
-                <td>{{member.ending_membership | date:'mediumDate'}}</td>
                 <td>{{member.email}}</td>
                 <td>{{member.phone}}</td>
                 <td>

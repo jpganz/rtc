@@ -11,7 +11,12 @@
                 </dd>
                 <dt><span jhiTranslate="rtcprojectApp.project.area_of_interes">Area Of Interes</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'rtcprojectApp.AreaOfInteresEnum.' + project.area_of_interes}}">{{project.area_of_interes}}</span>
+                    <ul class="areas">
+                        <li *ngFor="let area of project.area_of_interes">
+                            <span jhiTranslate="{{'rtcprojectApp.AreaOfInteresEnum.' + area}}">{{area}}</span>
+                        </li>
+                    </ul>
+
                 </dd>
                 <dt><span jhiTranslate="rtcprojectApp.project.organizer_committee">Organizer Committee</span></dt>
                 <dd>

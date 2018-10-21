@@ -1,5 +1,6 @@
 import { Moment } from 'moment';
 import { IClub } from 'app/shared/model//club.model';
+import { IUser } from 'app/core/user//user.model';
 
 export const enum MemberStatusEnum {
     ACTIVE = 'ACTIVE',
@@ -53,6 +54,7 @@ export interface IMember {
     email?: string;
     phone?: string;
     club?: IClub;
+    user?: IUser;
 }
 
 export class Member implements IMember {
@@ -70,6 +72,7 @@ export class Member implements IMember {
         public ending_membership?: Moment,
         public email?: string,
         public phone?: string,
-        public club?: IClub
+        public club?: IClub,
+        public user?: IUser
     ) {}
 }

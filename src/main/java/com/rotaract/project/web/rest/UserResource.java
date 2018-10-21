@@ -2,10 +2,13 @@ package com.rotaract.project.web.rest;
 
 import com.rotaract.project.config.Constants;
 import com.rotaract.project.domain.User;
+import com.rotaract.project.domain.UserGrantedRole;
 import com.rotaract.project.repository.UserRepository;
 import com.rotaract.project.security.AuthoritiesConstants;
+import com.rotaract.project.service.ClubService;
 import com.rotaract.project.service.MailService;
 import com.rotaract.project.service.UserService;
+import com.rotaract.project.service.UsersPermissions;
 import com.rotaract.project.service.dto.UserDTO;
 import com.rotaract.project.web.rest.errors.BadRequestAlertException;
 import com.rotaract.project.web.rest.errors.EmailAlreadyUsedException;
@@ -69,11 +72,17 @@ public class UserResource {
 
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    private final UsersPermissions usersPermissions;
+
+    private final ClubService clubService;
+
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, UsersPermissions usersPermissions, ClubService clubService) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.usersPermissions = usersPermissions;
+        this.clubService = clubService;
     }
 
     /**
@@ -120,7 +129,7 @@ public class UserResource {
      */
     @PutMapping("/users")
     @Timed
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    //@PreAuthorize("hasRole('"+AuthoritiesConstants.ADMIN+"') or hasRole('"+AuthoritiesConstants.CLUB_ADMIN+"')")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
@@ -149,7 +158,16 @@ public class UserResource {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         final String name = auth.getName();
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
-        Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+        UserGrantedRole roles = usersPermissions.getUserRoles();
+        Page<UserDTO> page = null;
+        if(roles.isAdmin()){
+            page = userService.getAllManagedUsers(pageable);
+        }else if(roles.isClubAdmin()){
+            Optional<User> user = userService.getUserWithAuthoritiesByLogin(roles.getUserName());
+            if(user.isPresent() && user.get().getClub() != null){
+                page = userService.getAllManagedUsersByClub(pageable, user.get().getClub());
+            }
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

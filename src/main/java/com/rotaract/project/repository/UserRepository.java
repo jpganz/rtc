@@ -1,5 +1,6 @@
 package com.rotaract.project.repository;
 
+import com.rotaract.project.domain.Club;
 import com.rotaract.project.domain.User;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -44,4 +45,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneWithAuthoritiesByEmail(String email);
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
+
+    Page<User> findAllByClubAndLoginNot(Pageable pageable, Club club, String login);
 }

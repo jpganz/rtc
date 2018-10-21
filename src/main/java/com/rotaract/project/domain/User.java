@@ -1,5 +1,6 @@
 package com.rotaract.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.rotaract.project.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -83,6 +84,16 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private Instant resetDate = null;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("")
+    private Club club;
+
+    @ManyToOne(optional = false)
+    //@NotNull
+    @JsonIgnoreProperties("")
+    private Member member;
 
     @JsonIgnore
     @ManyToMany
@@ -212,6 +223,23 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.persistentTokens = persistentTokens;
     }
 
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -241,6 +269,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", club='" + club.getName() + '\'' +
             "}";
     }
 }

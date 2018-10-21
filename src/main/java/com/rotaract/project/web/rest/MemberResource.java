@@ -2,8 +2,12 @@ package com.rotaract.project.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.rotaract.project.domain.Member;
+import com.rotaract.project.domain.User;
+import com.rotaract.project.domain.UserGrantedRole;
 import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.service.MemberService;
+import com.rotaract.project.service.UserService;
+import com.rotaract.project.service.UsersPermissions;
 import com.rotaract.project.web.rest.errors.BadRequestAlertException;
 import com.rotaract.project.web.rest.util.HeaderUtil;
 import com.rotaract.project.web.rest.util.PaginationUtil;
@@ -11,6 +15,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +29,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +47,14 @@ public class MemberResource {
 
     private final MemberService memberService;
 
-    public MemberResource(MemberService memberService) {
+    private final UsersPermissions usersPermissions;
+
+    private final UserService userService;
+
+    public MemberResource(MemberService memberService, UsersPermissions usersPermissions, UserService userService) {
         this.memberService = memberService;
+        this.usersPermissions = usersPermissions;
+        this.userService = userService;
     }
 
     /**
@@ -102,13 +114,17 @@ public class MemberResource {
         final String name = auth.getName(); // current user
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) auth.getAuthorities();
 
-        Page<Member> page;
-        if(isClubAdmin(authorities)){
+        Page<Member> page = new PageImpl<Member>(new ArrayList<>());
+        final UserGrantedRole user = usersPermissions.getUserRoles();
+        if(user.isAdmin()){
             page = memberService.findAll(pageable);
-        }else{
-            page = memberService.findAll(pageable);
+        }else if(user.isClubAdmin() || user.isUser()){
+            Optional<User> clubAdmin = userService.getUserWithAuthoritiesByLogin(user.getUserName());
+            if(clubAdmin.isPresent()){
+                page = memberService.findByClub(pageable, clubAdmin.get().getClub());
+            }
         }
-        page = memberService.findAll(pageable);
+        //page = memberService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/members");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

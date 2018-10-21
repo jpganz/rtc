@@ -45,5 +45,5 @@ public interface MemberService {
      */
     void delete(Long id);
 
-    Page<Member> findByClub(Pageable page,String currentUser);
+    Page<Member> findByClub(Pageable page, Club club);
 }

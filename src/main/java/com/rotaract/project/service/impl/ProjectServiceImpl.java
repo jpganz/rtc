@@ -1,5 +1,7 @@
 package com.rotaract.project.service.impl;
 
+import com.rotaract.project.domain.Club;
+import com.rotaract.project.domain.Member;
 import com.rotaract.project.service.ProjectService;
 import com.rotaract.project.domain.Project;
 import com.rotaract.project.repository.ProjectRepository;
@@ -66,7 +68,10 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepository.findById(id);
     }
 
-    /**
+    @Override
+    public Page<Project> findByClub(Pageable page, Club club) {
+        return projectRepository.findProjectByClub(page, club);
+    }/**
      * Delete the project by id.
      *
      * @param id the id of the entity

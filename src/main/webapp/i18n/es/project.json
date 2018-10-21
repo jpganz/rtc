@@ -10,7 +10,7 @@
             "updated": "Un Project ha sido actualizado con el identificador ",
             "deleted": "Un Project ha sido eliminado con el identificador ",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Project {{ name }}?"
+                "question": "¿Seguro que quiere eliminar el proyecto {{ name }}?"
             },
             "detail": {
                 "title": "Proyecto"
@@ -30,7 +30,7 @@
             "long_term_benefits": "Concepto General",
             "member_contributions": "Contribucion de socios",
             "fundraising": "Fundraising",
-            "donations": "Donaciones",
+            "donations": "Donaciones $",
             "donations_in_kind": "Donacion en especie - Detalle",
             "activity_description": "Descripcion de la actividad",
             "social_media_reference": "Referencia a redes sociales",

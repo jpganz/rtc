@@ -2,16 +2,18 @@ package com.rotaract.project.service;
 
 import com.rotaract.project.config.Constants;
 import com.rotaract.project.domain.Authority;
+import com.rotaract.project.domain.Club;
+import com.rotaract.project.domain.Member;
 import com.rotaract.project.domain.User;
-import com.rotaract.project.repository.AuthorityRepository;
-import com.rotaract.project.repository.PersistentTokenRepository;
-import com.rotaract.project.repository.UserRepository;
+import com.rotaract.project.domain.enumeration.*;
+import com.rotaract.project.repository.*;
 import com.rotaract.project.security.AuthoritiesConstants;
 import com.rotaract.project.security.SecurityUtils;
 import com.rotaract.project.service.dto.UserDTO;
 import com.rotaract.project.service.util.RandomUtil;
 import com.rotaract.project.web.rest.errors.*;
 
+import javassist.compiler.MemberCodeGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -47,12 +49,24 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final ClubRepository clubRepository;
+
+    private final MemberRepository memberRepository;
+
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       PersistentTokenRepository persistentTokenRepository,
+                       AuthorityRepository authorityRepository,
+                       CacheManager cacheManager,
+                       ClubRepository clubRepository,
+                       MemberRepository memberRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.clubRepository = clubRepository;
+        this.memberRepository = memberRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -105,6 +119,33 @@ public class UserService {
                 throw new EmailAlreadyUsedException();
             }
         });
+
+
+        Optional<Club> club = Optional.ofNullable(clubRepository.getOne(userDTO.getClubId()));
+        if(!club.isPresent()){
+            throw new EmailAlreadyUsedException();
+        }
+
+        final Member member = new Member();
+        member.setBirthdate(userDTO.getBirthday());
+        member.setClub(club.get());
+        member.committee(CommitteeEnum.NONE);
+        member.position(PositionEnum.NONE);
+        member.starting_membership(userDTO.getMembershipStart());
+        member.email(userDTO.getEmail());
+        member.phone(userDTO.getPhone());
+        member.professional_area(ProfessionalAreaEnum.OTHER);
+        member.last_name(userDTO.getLastName());
+        member.name(userDTO.getFirstName());
+        member.gender(GenderEnum.valueOf(userDTO.getGender()));
+        member.status(MemberStatusEnum.ACTIVE);
+
+
+        memberRepository.save(member);
+
+
+        //find club
+
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDTO.getLogin().toLowerCase());
@@ -115,6 +156,8 @@ public class UserService {
         newUser.setEmail(userDTO.getEmail().toLowerCase());
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
+        newUser.setClub(club.get());
+        newUser.setMember(member);
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key
@@ -251,6 +294,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UserDTO> getAllManagedUsersByClub(Pageable pageable, Club club) {
+        return userRepository.findAllByClubAndLoginNot(pageable, club,  Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
