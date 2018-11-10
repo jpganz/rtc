@@ -11,7 +11,7 @@
             "updated": "Un socio ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un socio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar al socio {{ name }}?"
+                "question": "¿Seguro que quiere eliminar al socio? Su usuario del sistema tambien sera eliminado"
             },
             "detail": {
                 "title": "Socio"

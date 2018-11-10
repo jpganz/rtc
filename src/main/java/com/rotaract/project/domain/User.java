@@ -85,6 +85,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "deleted")
+    private int deleted = 0;
+
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("")
@@ -238,6 +241,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
     @Override

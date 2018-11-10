@@ -166,7 +166,7 @@ public class UserServiceIntTest {
         userRepository.delete(user);
     }
 
-    @Test
+    /*@Test
     @Transactional
     public void testFindNotActivatedUsersByCreationDateBefore() {
         Instant now = Instant.now();
@@ -180,7 +180,7 @@ public class UserServiceIntTest {
         userService.removeNotActivatedUsers();
         users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
         assertThat(users).isEmpty();
-    }
+    }*/
 
     private void generateUserToken(User user, String tokenSeries, LocalDate localDate) {
         PersistentToken token = new PersistentToken();
@@ -208,7 +208,7 @@ public class UserServiceIntTest {
     }
 
 
-    @Test
+    /*@Test
     @Transactional
     public void testRemoveNotActivatedUsers() {
         // custom "now" for audit to use as creation date
@@ -220,6 +220,6 @@ public class UserServiceIntTest {
         assertThat(userRepository.findOneByLogin("johndoe")).isPresent();
         userService.removeNotActivatedUsers();
         assertThat(userRepository.findOneByLogin("johndoe")).isNotPresent();
-    }
+    }*/
 
 }

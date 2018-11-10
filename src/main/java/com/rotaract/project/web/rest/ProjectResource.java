@@ -118,6 +118,7 @@ public class ProjectResource {
             List<Project> projects = new ArrayList<>();
             if(user.isPresent() && user.get().getClub() != null){
                 page = projectService.findByClub(pageable, user.get().getClub());
+
             }
 
         }else {
@@ -139,6 +140,7 @@ public class ProjectResource {
     public ResponseEntity<Project> getProject(@PathVariable Long id) {
         log.debug("REST request to get Project : {}", id);
         Optional<Project> project = projectService.findOne(id);
+
         return ResponseUtil.wrapOrNotFound(project);
     }
 

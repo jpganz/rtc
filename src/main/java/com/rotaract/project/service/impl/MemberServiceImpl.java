@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(readOnly = true)
     public Page<Member> findAll(Pageable pageable) {
         log.debug("Request to get all Members");
-        return memberRepository.findAll(pageable);
+        return memberRepository.findAllByDeleted(pageable, 0);
     }
 
 
@@ -76,14 +76,28 @@ public class MemberServiceImpl implements MemberService {
      *
      * @param id the id of the entity
      */
+
+    //todo: fix this nasty workaround
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Member : {}", id);
-        memberRepository.deleteById(id);
+        try{
+            Member member = memberRepository.getOne(id);
+            Optional<User> user = userRepository.findOneByMember(member);
+            user.ifPresent( u -> {
+                user.get().setDeleted(1);
+                userRepository.save(user.get());
+            });
+            member.setDeleted(1);
+            memberRepository.save(member);
+        }catch(Exception e){
+            log.error("Could not delete member - user association for id: {}", id);
+        }
+        //memberRepository.deleteById(id);
     }
 
     @Override
     public Page<Member> findByClub(Pageable page, Club club) {
-        return memberRepository.findMemberByClub(page, club);
+        return memberRepository.findMemberByClubAndDeleted(page, club, 0);
     }
 }

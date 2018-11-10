@@ -1,6 +1,7 @@
 package com.rotaract.project.repository;
 
 import com.rotaract.project.domain.Club;
+import com.rotaract.project.domain.Member;
 import com.rotaract.project.domain.User;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -33,6 +34,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findOneByLogin(String login);
 
+    Optional<User> findOneByMember(Member member);
+
     @EntityGraph(attributePaths = "authorities")
     Optional<User> findOneWithAuthoritiesById(Long id);
 
@@ -44,7 +47,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Cacheable(cacheNames = USERS_BY_EMAIL_CACHE)
     Optional<User> findOneWithAuthoritiesByEmail(String email);
 
-    Page<User> findAllByLoginNot(Pageable pageable, String login);
+    Page<User> findAllByLoginNotAndDeleted(Pageable pageable, String login, int deleted);
 
-    Page<User> findAllByClubAndLoginNot(Pageable pageable, Club club, String login);
+    Page<User> findAllByClubAndLoginNotAndDeleted(Pageable pageable, Club club, String login, int deleted);
 }

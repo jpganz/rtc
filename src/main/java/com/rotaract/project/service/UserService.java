@@ -268,12 +268,28 @@ public class UserService {
             .map(UserDTO::new);
     }
 
+    @Transactional
     public void deleteUser(String login) {
-        userRepository.findOneByLogin(login).ifPresent(user -> {
-            userRepository.delete(user);
-            this.clearUserCaches(user);
-            log.debug("Deleted User: {}", user);
-        });
+        try {
+            Optional<User> user = userRepository.findOneByLogin(login);
+            user.ifPresent(u -> {
+                user.get().setDeleted(1);
+                userRepository.save(user.get());
+
+                this.clearUserCaches(u);
+                log.debug("Deleted User: {}", u);
+
+                Optional<Member> member = memberRepository.findById(user.get().getMember().getId());
+                member.ifPresent(m -> {
+                    member.get().setDeleted(1);
+                });
+                memberRepository.save(member.get());
+            });
+
+        } catch (Exception e) {
+            log.error("Error deleting a user with username " + login);
+        }
+
     }
 
     public void changePassword(String currentClearTextPassword, String newPassword) {
@@ -293,19 +309,19 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository.findAllByLoginNotAndDeleted(pageable, Constants.ANONYMOUS_USER, 0).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsersByClub(Pageable pageable, Club club) {
-        return userRepository.findAllByClubAndLoginNot(pageable, club,  Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository.findAllByClubAndLoginNotAndDeleted(pageable, club,  Constants.ANONYMOUS_USER, 0).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable, String username) {
-        Optional<User> currentUser = userRepository.findOneByLogin(username);
+        //Optional<User> currentUser = userRepository.findOneByLogin(username);
         //todo: void showing all users
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository.findAllByLoginNotAndDeleted(pageable, Constants.ANONYMOUS_USER, 0).map(UserDTO::new);
     }
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
@@ -345,7 +361,7 @@ public class UserService {
      * This is scheduled to get fired everyday, at 01:00 (am).
      */
     @Scheduled(cron = "0 0 1 * * ?")
-    public void removeNotActivatedUsers() {
+    /*public void removeNotActivatedUsers() {
         userRepository
             .findAllByActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
             .forEach(user -> {
@@ -353,7 +369,7 @@ public class UserService {
                 userRepository.delete(user);
                 this.clearUserCaches(user);
             });
-    }
+    }*/
 
     /**
      * @return a list of all the authorities

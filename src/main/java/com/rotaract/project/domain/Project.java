@@ -19,6 +19,7 @@ import com.rotaract.project.domain.enumeration.AreaOfInteresEnum;
 import com.rotaract.project.domain.enumeration.OrganizerCommitteeEnum;
 
 import com.rotaract.project.domain.enumeration.ProjectStatusEnum;
+import org.hibernate.annotations.Fetch;
 
 /**
  * A Project.
@@ -38,17 +39,11 @@ public class Project implements Serializable {
     @Column(name = "project_name", nullable = false)
     private String project_name;
 
-
     //@Transient
     @ElementCollection
     @Column(name = "area_of_interes", nullable = true)
+    @Enumerated(EnumType.ORDINAL)
     private List<AreaOfInteresEnum> area_of_interes;
-
-    //@NotNull
-    //@Enumerated(EnumType.STRING)
-    //@Column(name = "area_of_interes", nullable = false)
-    @Transient
-    private String area_of_interes_string;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -155,22 +150,6 @@ public class Project implements Serializable {
     }
 
     // fin transient
-
-    public Project area_of_interes(String area_of_interes) {
-        this.area_of_interes_string = area_of_interes;
-        return this;
-    }
-
-    public String getArea_of_interes_string() {
-        return area_of_interes_string;
-    }
-
-    public void setArea_of_interes_string(String area_of_interes_string) {
-        this.area_of_interes_string = area_of_interes_string;
-    }
-
-
-
 
     public OrganizerCommitteeEnum getOrganizer_committee() {
         return organizer_committee;

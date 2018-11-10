@@ -9,7 +9,7 @@
         "updated": "An user is updated with identifier {{ param }}",
         "deleted": "An user is deleted with identifier {{ param }}",
         "delete": {
-            "question": "¿Seguro que quieres eliminar el usuario {{ login }}?"
+            "question": "¿Seguro que quieres eliminar el usuario {{ login }}? Esto tambien borrara al socio enlazado a esta cuenta"
         },
         "detail": {
             "title": "Usuario"

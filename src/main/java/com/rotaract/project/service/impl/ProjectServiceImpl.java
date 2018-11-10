@@ -2,6 +2,7 @@ package com.rotaract.project.service.impl;
 
 import com.rotaract.project.domain.Club;
 import com.rotaract.project.domain.Member;
+import com.rotaract.project.domain.enumeration.AreaOfInteresEnum;
 import com.rotaract.project.service.ProjectService;
 import com.rotaract.project.domain.Project;
 import com.rotaract.project.repository.ProjectRepository;
@@ -65,7 +66,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public Optional<Project> findOne(Long id) {
         log.debug("Request to get Project : {}", id);
-        return projectRepository.findById(id);
+        Optional<Project> project = projectRepository.findById(id);
+        if(project.isPresent()){
+            for(AreaOfInteresEnum aoi:project.get().getArea_of_interes()){
+                aoi.name();
+            }
+        }
+        return project;
     }
 
     @Override

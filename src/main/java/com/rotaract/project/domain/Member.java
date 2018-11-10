@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -91,6 +92,9 @@ public class Member implements Serializable {
     @NotNull
     @JsonIgnoreProperties("")
     private Club club;
+
+    @Column(name = "deleted")
+    private int deleted = 0;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -203,6 +207,14 @@ public class Member implements Serializable {
 
     public void setProfessional_area(ProfessionalAreaEnum professional_area) {
         this.professional_area = professional_area;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
     public LocalDate getStarting_membership() {
