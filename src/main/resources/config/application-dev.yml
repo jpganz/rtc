@@ -35,11 +35,11 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/rtctest3?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/rotaract1?useUnicode=true&characterEncoding=utf8&useSSL=false
         #url: jdbc:mysql://localhost:3306/rotaract1?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: rtctest3
+        username: rotaractuser
         #username: rotaractuser1
-        password: rtctest
+        password: rotaractpass
         #password: rotaract123
         hikari:
             auto-commit: false

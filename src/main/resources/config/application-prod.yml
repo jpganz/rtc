@@ -31,9 +31,9 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         #url: jdbc:mysql://localhost:3306/rtctest3?useUnicode=true&characterEncoding=utf8&useSSL=false
         url: jdbc:mysql://localhost:3306/rotaract1?useUnicode=true&characterEncoding=utf8&useSSL=false
-        #username: rtctest3
+        #username: rotaractuser
         username: rotaractuser1
-        #password: rtctest
+        #password: rotaractpass
         password: rotaract123
 
         hikari:
@@ -57,10 +57,10 @@ spring:
     liquibase:
         contexts: prod
     mail:
-        host: localhost
+        host: smtp.sendgrid.net
         port: 25
-        username:
-        password:
+        username: apikey
+        password: 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
     thymeleaf:
         cache: true
 
@@ -110,8 +110,8 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: aeec660b668bafe3b032cfc92d781ccd7c2827d54fd25ab9f928f9a995da781242332b404b4cd0825f76f4f4ce81036cb5a0
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: rtcproject@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        from: repoteria@rotaract4250.org
+        base-url: http://rotaract4250.org/reportes # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true

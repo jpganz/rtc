@@ -18,7 +18,8 @@
             "FUNDING_EVENT": "Recaudacion",
             "POLIO": "Polio",
             "ENVIRONMENT": "Medio Ambiente",
-            "CATASTROPHIES_RESPONSE": "Catastrofes"
+            "CATASTROPHIES_RESPONSE": "Catastrofes",
+            "CLUB_SERVICE": "Club Service"
         }
     }
 }

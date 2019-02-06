@@ -11,6 +11,7 @@ public enum OrganizerCommitteeEnum {
     YOUTH_SERVICE,
     PUBLIC_RELATIONS,
     GREEN_ROTARACT,
+    COMMUNITY_SERVICE,
     NONE
 }
 

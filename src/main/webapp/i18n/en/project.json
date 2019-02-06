@@ -22,7 +22,7 @@
             "coordinator": "Coordinator",
             "location": "Location",
             "date": "Date",
-            "main_objective": "Value",
+            "main_objective": "Value of donations in kind",
             "target_community": "Target Community",
             "direct_beneficiaries": "Direct Beneficiaries",
             "indirect_beneficiaries": "Hours of volunteer work",
